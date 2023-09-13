@@ -1,4 +1,4 @@
-import "./App.css";
+import Home from "./Home";
 import Navbar from "./Navbar";
 
 function App() {
@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div></div>
+      <div>
+        <Home />
+      </div>
     </div>
   );
 }
