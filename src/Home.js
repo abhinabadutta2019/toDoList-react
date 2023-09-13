@@ -8,10 +8,16 @@ const Home = () => {
     { title: "Task 2", id: 2 },
   ]);
   //
+  const handleDelete = (id) => {
+    const newLists = lists.filter((task) => task.id !== id);
+    //
+    setLists(newLists);
+  };
+  //
   return (
     <div>
       <h2>Home</h2>
-      <TaskList lists={lists} />
+      <TaskList lists={lists} handleDelete={handleDelete} />
     </div>
   );
 };
