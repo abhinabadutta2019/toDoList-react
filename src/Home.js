@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TaskList from "./TaskList";
 import Counter from "./Test-Counter";
+import AddTask from "./AddTask";
 
 const Home = () => {
   //
@@ -43,20 +44,8 @@ const Home = () => {
   return (
     <div>
       <h2>Home</h2>
-      {/*  */}
-      <form>
-        <label>
-          Enter your task:
-          <input type="text" id="taskName" />
-        </label>
-      </form>
-      <button
-        onClick={() => {
-          addTask();
-        }}
-      >
-        Add task
-      </button>
+
+      <AddTask addTask={addTask} />
       <br />
       <br />
       {/*  */}
