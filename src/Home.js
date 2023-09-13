@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TaskList from "./TaskList";
-import Counter from "./Counter";
+import Counter from "./Test-Counter";
 
 const Home = () => {
   //
