@@ -14,10 +14,52 @@ const Home = () => {
     //
     setLists(newLists);
   };
+  /////////////\\\\\\\\\\\\\\\/////////////
+  const addTask = () => {
+    // console.log();
+    const taskNameValue = document.getElementById("taskName").value;
+    //
+
+    let maxId = -1;
+    lists.forEach((task) => {
+      if (task.id > maxId) {
+        maxId = task.id;
+      }
+    });
+    // console.log(maxId);
+    const newObj = { title: taskNameValue, id: maxId + 1 };
+    // console.log(newObj, "newObj");
+
+    // Create a new array with the new object
+    const newList = [...lists, newObj];
+    //
+    console.log(newList, "newList");
+
+    //
+    setLists(newList);
+  };
+
   //
   return (
     <div>
       <h2>Home</h2>
+      {/*  */}
+      <form>
+        <label>
+          Enter your task:
+          <input type="text" id="taskName" />
+        </label>
+      </form>
+      <button
+        onClick={() => {
+          addTask();
+        }}
+      >
+        Add task
+      </button>
+      <br />
+      <br />
+      {/*  */}
       <TaskList lists={lists} handleDelete={handleDelete} />
       <br />
       <Counter />
