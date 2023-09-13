@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TaskList from "./TaskList";
+import Counter from "./Counter";
 
 const Home = () => {
   //
@@ -18,6 +19,8 @@ const Home = () => {
     <div>
       <h2>Home</h2>
       <TaskList lists={lists} handleDelete={handleDelete} />
+      <br />
+      <Counter />
     </div>
   );
 };
