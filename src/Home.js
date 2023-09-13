@@ -4,28 +4,35 @@ import { useState } from "react";
 
 const Home = () => {
   //
-  const taskArray = [];
+  const [lists, setLists] = useState([
+    { title: "Task 1", id: 1 },
+    { title: "Task 2", id: 2 },
+  ]);
   //
-  const [taskId, setTaskId] = useState(1); // Initialize taskId with 1
+  let outerList = [];
   //
   const addTask = () => {
     const taskName = document.getElementById("taskId").value;
-    // console.log(taskName, "taskName");
+    //
+    let maxId = -1;
+    lists.forEach((task) => {
+      if (task.id > maxId) {
+        maxId = task.id;
+      }
+    });
+    //
+    const newObj = { title: taskName, id: maxId + 1 };
+    //
+    // Create a new array with the new object
+    const newList = [...lists, newObj];
 
     //
-    // Create a new task object with the current taskId
-    const newObj = { id: taskId, name: taskName };
-
-    // Increment taskId for the next task
-    setTaskId(taskId + 1);
+    console.log(newList);
     //
-
-    //
-    taskArray.push(newObj);
-    //
-    console.log(taskArray, "taskArray");
-    //
+    outerList = [...newList];
+    setLists(newList);
   };
+  console.log(outerList, "outerList");
   //
   return (
     <div>
