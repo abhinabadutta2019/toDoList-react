@@ -4,12 +4,9 @@ import { useState } from "react";
 
 const Home = () => {
   //
-  const [lists, setLists] = useState([
-    { title: "Task 1", id: 1 },
-    { title: "Task 2", id: 2 },
-  ]);
+  const [lists, setLists] = useState([]);
   //
-  let outerList = [];
+
   //
   const addTask = () => {
     const taskName = document.getElementById("taskId").value;
@@ -29,10 +26,10 @@ const Home = () => {
     //
     console.log(newList);
     //
-    outerList = [...newList];
+
     setLists(newList);
   };
-  console.log(outerList, "outerList");
+
   //
   return (
     <div>
@@ -46,6 +43,11 @@ const Home = () => {
       </form>
       <button onClick={addTask}>Add task</button>
       {/*  */}
+      <ul>
+        {lists.map((task) => (
+          <li key={task.id}>{task.title}</li>
+        ))}
+      </ul>
     </div>
   );
 };
