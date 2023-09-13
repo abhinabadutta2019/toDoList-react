@@ -1,24 +1,8 @@
-const AddTask = ({ addTask }) => {
+const AddTask = () => {
   //
 
   //
-  return (
-    <div>
-      <form>
-        <label>
-          Enter your task:
-          <input type="text" id="taskName" />
-        </label>
-      </form>
-      <button
-        onClick={() => {
-          addTask();
-        }}
-      >
-        Add task
-      </button>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default AddTask;
