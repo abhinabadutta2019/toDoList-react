@@ -5,20 +5,16 @@ import { useState } from "react";
 const Home = () => {
   //
   const [lists, setLists] = useState([]);
+  const [idCounter, setIdCounter] = useState(1);
   //
 
   //
   const addTask = () => {
     const taskName = document.getElementById("taskId").value;
     //
-    let maxId = -1;
-    lists.forEach((task) => {
-      if (task.id > maxId) {
-        maxId = task.id;
-      }
-    });
+
     //
-    const newObj = { title: taskName, id: maxId + 1 };
+    const newObj = { title: taskName, id: idCounter };
     //
     // Create a new array with the new object
     const newList = [...lists, newObj];
@@ -28,6 +24,9 @@ const Home = () => {
     //
 
     setLists(newList);
+    //
+    // Increment the ID counter for the next task
+    setIdCounter(idCounter + 1);
   };
 
   //
