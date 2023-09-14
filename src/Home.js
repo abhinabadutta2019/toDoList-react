@@ -35,7 +35,7 @@ const Home = () => {
     const newList = [...lists, newObj];
     //
     console.log(newList, "newList");
-
+    //
     //
     setLists(newList);
   };
