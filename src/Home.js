@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div>
       <h2>Home</h2>
-      {isLoggedIn ? <Profile /> : <TaskList />}
+      {isLoggedIn && <Profile />}
     </div>
   );
 };
