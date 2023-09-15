@@ -1,17 +1,15 @@
 import Profile from "./AddTask";
-import TaskList from "./TaskList";
 
 const Home = () => {
   //
-  const isLoggedIn = true;
+  const products = [
+    { title: "Cabbage", id: 1 },
+    { title: "Garlic", id: 2 },
+    { title: "Apple", id: 3 },
+  ];
 
   //
-  return (
-    <div>
-      <h2>Home</h2>
-      {isLoggedIn && <Profile />}
-    </div>
-  );
+  return <Profile products={products} />;
 };
 
 export default Home;
