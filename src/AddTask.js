@@ -1,14 +1,17 @@
-const AddTask = ({ products }) => {
-  //
+import { useState } from "react";
 
+const AddTask = () => {
   //
-  return (
-    <div>
-      {products.map((product) => {
-        return <li key={product.title}>{product.title}</li>;
-      })}
-    </div>
-  );
+  const [count, setCount] = useState(0);
+  //
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+  //
+  // console.log("button clicked " + count + "times");
+  //
+  return <button onClick={handleClick}>button clicked {count} times</button>;
+  //
 };
 
 export default AddTask;
