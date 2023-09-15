@@ -1,12 +1,6 @@
-import { useState } from "react";
+const AddTask = ({ handleClick, count }) => {
+  //
 
-const AddTask = () => {
-  //
-  const [count, setCount] = useState(0);
-  //
-  const handleClick = () => {
-    setCount(count + 1);
-  };
   //
   // console.log("button clicked " + count + "times");
   //
