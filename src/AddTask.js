@@ -1,11 +1,8 @@
-const Profile = ({ products }) => {
+const AddTask = () => {
   //
-  const listItem = products.map((product) => (
-    <li key={product.id}>{product.title}</li>
-  ));
-  //
-  return <ul>{listItem}</ul>;
-};
-//
 
-export default Profile;
+  //
+  return <div></div>;
+};
+
+export default AddTask;

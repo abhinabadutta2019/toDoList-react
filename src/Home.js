@@ -1,5 +1,3 @@
-import Profile from "./AddTask";
-
 const Home = () => {
   //
   const products = [
@@ -9,7 +7,13 @@ const Home = () => {
   ];
 
   //
-  return <Profile products={products} />;
+  return (
+    <div>
+      {products.map((product) => {
+        return <li key={product.title}>{product.title}</li>;
+      })}
+    </div>
+  );
 };
 
 export default Home;
