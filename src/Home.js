@@ -1,3 +1,5 @@
+import AddTask from "./AddTask";
+
 const Home = () => {
   //
   const products = [
@@ -9,9 +11,7 @@ const Home = () => {
   //
   return (
     <div>
-      {products.map((product) => {
-        return <li key={product.title}>{product.title}</li>;
-      })}
+      <AddTask products={products} />
     </div>
   );
 };

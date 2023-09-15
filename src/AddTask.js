@@ -1,8 +1,14 @@
-const AddTask = () => {
+const AddTask = ({ products }) => {
   //
 
   //
-  return <div></div>;
+  return (
+    <div>
+      {products.map((product) => {
+        return <li key={product.title}>{product.title}</li>;
+      })}
+    </div>
+  );
 };
 
 export default AddTask;
