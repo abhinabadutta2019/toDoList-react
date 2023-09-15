@@ -1,3 +1,5 @@
+import Profile from "./AddTask";
+
 const Home = () => {
   //
 
@@ -5,6 +7,7 @@ const Home = () => {
   return (
     <div>
       <h2>Home</h2>
+      <Profile />
     </div>
   );
 };
