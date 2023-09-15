@@ -1,19 +1,15 @@
 import Profile from "./AddTask";
+import TaskList from "./TaskList";
 
 const Home = () => {
   //
-  const isLoggedIn = false;
-  let content;
-  if (isLoggedIn) {
-    content = <Profile />;
-  } else {
-    content = <>No</>;
-  }
+  const isLoggedIn = true;
+
   //
   return (
     <div>
       <h2>Home</h2>
-      {content}
+      {isLoggedIn ? <Profile /> : <TaskList />}
     </div>
   );
 };
