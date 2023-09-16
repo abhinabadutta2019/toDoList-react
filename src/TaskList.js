@@ -1,7 +1,14 @@
 const TaskList = ({ value }) => {
+  //
+  const handleClick = () => {
+    console.log("clicked!");
+  };
+  //
   return (
     <>
-      <button className="square">{value}</button>
+      <button className="square" onClick={handleClick}>
+        {value}
+      </button>
     </>
   );
 };
