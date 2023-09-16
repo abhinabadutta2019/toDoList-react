@@ -2,24 +2,24 @@ import TaskList from "./TaskList";
 
 const Home = () => {
   //
-  // const value = 0;
+  // const ;
   //
   return (
     <>
       <div>
-        <TaskList value="1" />
-        <TaskList value="2" />
-        <TaskList value="3" />
+        <TaskList />
+        <TaskList />
+        <TaskList />
       </div>
       <div>
-        <TaskList value="4" />
-        <TaskList value="5" />
-        <TaskList value="6" />
+        <TaskList />
+        <TaskList />
+        <TaskList />
       </div>
       <div>
-        <TaskList value="7" />
-        <TaskList value="8" />
-        <TaskList value="9" />
+        <TaskList />
+        <TaskList />
+        <TaskList />
       </div>
     </>
   );

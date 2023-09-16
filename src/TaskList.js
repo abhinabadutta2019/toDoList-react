@@ -1,7 +1,11 @@
-const TaskList = ({ value }) => {
+import { useState } from "react";
+
+const TaskList = () => {
+  //
+  const [value, setValue] = useState(null);
   //
   const handleClick = () => {
-    console.log("clicked!");
+    setValue("X");
   };
   //
   return (
