@@ -1,3 +1,5 @@
+import { TaskList, Gallery } from "./TaskList";
+
 const Home = () => {
   //
 
@@ -5,6 +7,7 @@ const Home = () => {
   return (
     <div>
       <h2>Home</h2>
+      <TaskList />
     </div>
   );
 };

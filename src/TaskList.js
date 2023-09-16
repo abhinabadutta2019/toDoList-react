@@ -1,5 +1,18 @@
 const TaskList = () => {
-  return <div></div>;
+  //
+  const imageTag = (
+    <img src="https://i.imgur.com/MK3eW3Am.jpg" alt="Katherine Johnson" />
+  );
+  //
+  return <>{imageTag}</>;
 };
 
-export default TaskList;
+const Gallery = () => {
+  return (
+    <>
+      <TaskList /> <TaskList /> <TaskList />
+    </>
+  );
+};
+
+export { TaskList, Gallery };
