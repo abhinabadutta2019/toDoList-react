@@ -27,6 +27,7 @@ const Home = () => {
         maxId = task.id;
       }
     });
+    //
     // console.log(maxId);
     const newObj = { title: taskNameValue, id: maxId + 1 };
     // console.log(newObj, "newObj");
