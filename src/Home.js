@@ -1,15 +1,10 @@
-import { TaskList, Gallery } from "./TaskList";
+import { Gallery } from "./TaskList";
+// import { Profile } from "./Gallery.js";
 
-const Home = () => {
-  //
-
-  //
+export default function App() {
   return (
     <div>
-      <h2>Home</h2>
-      <TaskList />
+      <Gallery />
     </div>
   );
-};
-
-export default Home;
+}

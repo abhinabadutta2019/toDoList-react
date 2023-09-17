@@ -1,18 +1,16 @@
-const TaskList = () => {
-  //
-  const imageTag = (
-    <img src="https://i.imgur.com/MK3eW3Am.jpg" alt="Katherine Johnson" />
-  );
-  //
-  return <>{imageTag}</>;
-};
+// Move me to Profile.js!
 
-const Gallery = () => {
+import Profile from "./AddTask";
+
+function Gallery() {
   return (
-    <>
-      <TaskList /> <TaskList /> <TaskList />
-    </>
+    <section>
+      <h1>Amazing scientists</h1>
+      <Profile />
+      <Profile />
+      <Profile />
+    </section>
   );
-};
+}
 
-export { TaskList, Gallery };
+export { Gallery };
