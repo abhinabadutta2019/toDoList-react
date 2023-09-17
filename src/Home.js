@@ -1,10 +1,24 @@
-import { Gallery } from "./TaskList";
-// import { Profile } from "./Gallery.js";
+const baseUrl = "https://i.imgur.com/7vQD0fPs.jpg";
+const person = {
+  name: "Gregorio Y. Zara",
+  imageId: "7vQD0fP",
+  // imageSize: "s",
+  theme: {
+    backgroundColor: "black",
+    color: "pink",
+  },
+};
 
-export default function App() {
+export default function TodoList() {
   return (
-    <div>
-      <Gallery />
+    <div style={person.theme}>
+      <h1>{person.name}'s Todos</h1>
+      <img className="avatar" src={baseUrl} alt={person.name} />
+      <ul>
+        <li>Improve the videophone</li>
+        <li>Prepare aeronautics lectures</li>
+        <li>Work on the alcohol-fuelled engine</li>
+      </ul>
     </div>
   );
 }
