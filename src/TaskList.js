@@ -1,16 +1,18 @@
-// Move me to Profile.js!
-
-import Profile from "./AddTask";
-
-function Gallery() {
+import { getImageUrl } from "./AddTask.js";
+const Profile = ({ src, alt }) => {
+  // console.log(imageId);
+  //
   return (
-    <section>
-      <h1>Amazing scientists</h1>
-      <Profile />
-      <Profile />
-      <Profile />
-    </section>
+    <img
+      className="avatar"
+      // src={getImageUrl(imageId)}
+      src={src}
+      // alt="Katsuko Saruhashi"
+      alt={alt}
+      width={70}
+      height={70}
+    />
   );
-}
+};
 
-export { Gallery };
+export default Profile;

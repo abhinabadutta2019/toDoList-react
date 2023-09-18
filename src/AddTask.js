@@ -1,12 +1,5 @@
-const Profile = () => {
-  //
-
-  //
-  return (
-    <>
-      <img src="https://i.imgur.com/QIrZWGIs.jpg" alt="Alan L. Hart" />
-    </>
-  );
+const getImageUrl = (imageId, size = "s") => {
+  return "https://i.imgur.com/" + imageId + size + ".jpg";
 };
 
-export default Profile;
+export { getImageUrl };
