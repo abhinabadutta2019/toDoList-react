@@ -20,6 +20,7 @@ const Home = () => {
     // console.log();
     const taskNameValue = document.getElementById("taskName").value;
     //
+    //
 
     let maxId = -1;
     lists.forEach((task) => {
