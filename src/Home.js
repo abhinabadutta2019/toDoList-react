@@ -1,30 +1,30 @@
-import { getImageUrl } from "./AddTask.js";
+import { recipes } from "./TaskList.js";
 
-function Avatar({ person, size }) {
-  if (size < 90) {
-    size = "s";
-  } else {
-    size = "b";
-  }
-  return (
-    <img
-      className="avatar"
-      src={getImageUrl(person, size)}
-      alt={person.name}
-      width={size}
-      height={size}
-    />
-  );
-}
+export default function RecipeList() {
+  //
+  const mapValue = recipes.map((item) => {
+    //
+    let emptyArray = [];
+    const ingredientsMap = item.ingredients.forEach((oneIng) => (
+      // console.log(oneIng)
+      <li key={oneIng}>{oneIng}</li>
+    ));
 
-export default function Profile() {
+    // console.log(ingredientsMap);
+
+    //
+    return (
+      <div>
+        {item.name}
+        {ingredientsMap}
+      </div>
+    );
+  });
+  //
   return (
-    <Avatar
-      size={89}
-      person={{
-        name: "Gregorio Y. Zara",
-        imageId: "7vQD0fP",
-      }}
-    />
+    <div>
+      <h1>Recipes</h1>
+      {mapValue}
+    </div>
   );
 }

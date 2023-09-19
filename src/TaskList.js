@@ -1,18 +1,23 @@
-import { getImageUrl } from "./AddTask.js";
-const Profile = ({ src, alt }) => {
-  // console.log(imageId);
-  //
-  return (
-    <img
-      className="avatar"
-      // src={getImageUrl(imageId)}
-      src={src}
-      // alt="Katsuko Saruhashi"
-      alt={alt}
-      width={70}
-      height={70}
-    />
-  );
-};
-
-export default Profile;
+export const recipes = [
+  {
+    id: "greek-salad",
+    name: "Greek Salad",
+    ingredients: ["tomatoes", "cucumber", "onion", "olives", "feta"],
+  },
+  {
+    id: "hawaiian-pizza",
+    name: "Hawaiian Pizza",
+    ingredients: [
+      "pizza crust",
+      "pizza sauce",
+      "mozzarella",
+      "ham",
+      "pineapple",
+    ],
+  },
+  {
+    id: "hummus",
+    name: "Hummus",
+    ingredients: ["chickpeas", "olive oil", "garlic cloves", "lemon", "tahini"],
+  },
+];
