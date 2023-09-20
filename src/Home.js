@@ -1,37 +1,20 @@
-//Stopping propagation example
+// e.preventDefault() is different from --- e.stopPropagation()
 
-//event propogation -- here example== parent <div> and child <button>  both has event
-
-//
-
-// this is exporting
 const Home = () => {
   //
-  return (
-    <div
-      onClick={() => {
-        console.log("You clicked on the toolbar!");
-      }}
-    >
-      <button
-        onClick={(e) => {
-          console.log(e);
-          console.log("Play button macha");
-        }}
-      >
-        Play here
-      </button>
-      {/*  */}
-      <button
-        onClick={() => {
-          console.log("Upload button macha");
-        }}
-      >
-        Upload here
-      </button>
-    </div>
-  );
+
+  const eventHandler = (e) => {
+    // e.preventDefault();
+    alert("Hi");
+  };
   //
+
+  return (
+    <form onSubmit={eventHandler}>
+      <input />
+      <button>Click here</button>
+    </form>
+  );
 };
 
 export default Home;
