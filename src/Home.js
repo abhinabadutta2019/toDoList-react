@@ -1,11 +1,22 @@
-import ButtonFunc from "./AddTask";
-
-const ButtonClick = () => {
-  console.log("HI");
+const ButtonClick = ({ message, childComp }) => {
+  return (
+    <button
+      onClick={() => {
+        console.log(message);
+      }}
+    >
+      {childComp}
+    </button>
+  );
 };
 
 const Home = () => {
-  return <ButtonFunc clickFunc={ButtonClick} />;
+  return (
+    <div>
+      <ButtonClick message={"Misss"} childComp={"Click here 1"} />{" "}
+      <ButtonClick message={"Mrs"} childComp={"Click111 here 1"} />
+    </div>
+  );
 };
 
 export default Home;
