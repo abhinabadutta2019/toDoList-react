@@ -1,3 +1,5 @@
+//Stopping propagation example
+
 //event propogation -- here example== parent <div> and child <button>  both has event
 
 //
@@ -8,12 +10,13 @@ const Home = () => {
   return (
     <div
       onClick={() => {
-        console.log("Hi");
+        console.log("You clicked on the toolbar!");
       }}
     >
       <button
-        onClick={() => {
-          console.log("Play macha");
+        onClick={(e) => {
+          console.log(e);
+          console.log("Play button macha");
         }}
       >
         Play here
@@ -21,7 +24,7 @@ const Home = () => {
       {/*  */}
       <button
         onClick={() => {
-          console.log("Upload macha");
+          console.log("Upload button macha");
         }}
       >
         Upload here
