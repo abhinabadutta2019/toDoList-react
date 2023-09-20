@@ -1,22 +1,43 @@
-const ButtonClick = ({ message, childComp }) => {
-  return (
-    <button
-      onClick={() => {
-        console.log(message);
-      }}
-    >
-      {childComp}
-    </button>
-  );
-};
+//Passing event handlers as props
 
-const Home = () => {
+const ButtonClick = ({ onClick, buttonName }) => {
+  return <button onClick={onClick}>{buttonName}</button>;
+};
+// UploadButton
+const UploadButton = () => {
+  //
+  const eventHandler1 = () => {
+    console.log("Hi");
+  };
+
   return (
     <div>
-      <ButtonClick message={"Misss"} childComp={"Click here 1"} />{" "}
-      <ButtonClick message={"Mrs"} childComp={"Click111 here 1"} />
+      <ButtonClick onClick={eventHandler1} buttonName="Upload here" />
     </div>
   );
+};
+//
+
+const PlayButton = () => {
+  //
+  const eventHandler2 = () => {
+    //
+    alert("Play here");
+  };
+  //
+  return <ButtonClick onClick={eventHandler2} buttonName="play button" />;
+};
+
+// this is exporting
+const Home = () => {
+  //
+  return (
+    <div>
+      <UploadButton />
+      <PlayButton />
+    </div>
+  );
+  //
 };
 
 export default Home;
