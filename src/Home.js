@@ -1,30 +1,20 @@
-import Panel from "./Panel.js";
-import { getImageUrl } from "./utils.js";
+// let guest = 0;
 
-let currentPerson;
-
-export default function Profile({ person }) {
-  currentPerson = person;
-  return (
-    <Panel>
-      <Header />
-      <Avatar />
-    </Panel>
-  );
+function Cup({ guest }) {
+  // Bad: changing a preexisting variable!
+  guest = guest + 1;
+  return <h2>Tea cup for guest #{guest}</h2>;
 }
 
-function Header() {
-  return <h1>{currentPerson.name}</h1>;
-}
+export default function TeaSet() {
+  const emptyArray = [];
+  for (let index = 0; index < 5; index++) {
+    // const element = array[index];
+    // console.log("Tea cup for guest " + index);
+    const output = <div>Tea cup for guest " # {index}</div>;
+    emptyArray.push(output);
+    // return;
+  }
 
-function Avatar() {
-  return (
-    <img
-      className="avatar"
-      src={getImageUrl(currentPerson)}
-      alt={currentPerson.name}
-      width={50}
-      height={50}
-    />
-  );
+  return emptyArray;
 }
