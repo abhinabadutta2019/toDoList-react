@@ -1,40 +1,31 @@
-//Passing event handlers as props
+//event propogation -- here example== parent <div> and child <button>  both has event
 
-const ButtonClick = ({ onClick, buttonName }) => {
-  return <button onClick={onClick}>{buttonName}</button>;
-};
-// UploadButton
-const UploadButton = () => {
-  //
-  const eventHandler1 = () => {
-    console.log("Hi");
-  };
-
-  return (
-    <div>
-      <ButtonClick onClick={eventHandler1} buttonName="Upload here" />
-    </div>
-  );
-};
 //
-
-const PlayButton = () => {
-  //
-  const eventHandler2 = () => {
-    //
-    alert("Play here");
-  };
-  //
-  return <ButtonClick onClick={eventHandler2} buttonName="play button" />;
-};
 
 // this is exporting
 const Home = () => {
   //
   return (
-    <div>
-      <UploadButton />
-      <PlayButton />
+    <div
+      onClick={() => {
+        console.log("Hi");
+      }}
+    >
+      <button
+        onClick={() => {
+          console.log("Play macha");
+        }}
+      >
+        Play here
+      </button>
+      {/*  */}
+      <button
+        onClick={() => {
+          console.log("Upload macha");
+        }}
+      >
+        Upload here
+      </button>
     </div>
   );
   //
