@@ -1,27 +1,40 @@
 import { useState } from "react";
-import { myList } from "./AddTask.js";
+import { sculptureList } from "./TaskList.js";
 
 export default function Gallery() {
   //
   const [index, setIndex] = useState(0);
-
-  let hawa = 0;
-  // console.log(index);
+  const [hide, setHide] = useState(false);
+  //
 
   const eventHandler = () => {
-    for (let i = 0; i < 10; i++) {
-      // hawa = i;
-      setIndex(index + 1);
-      hawa = index;
-    }
-    return hawa;
+    setIndex(index + 1);
   };
+  //
+  const eventHandlerHide = () => {
+    setHide(true);
+  };
+  //
+  console.log(hide, "hide");
+  // console.log(index, "index");
+
+  // console.log(sculptureList.length, "length");
+  let item;
+
+  // ??? eta diye -- loop ta stop/ break kora jacche naa
+
+  if (index < sculptureList.length) {
+    item = sculptureList[index];
+  }
 
   return (
     <div>
-      <button onClick={eventHandler}></button>
-      <p>{hawa} hawa</p>
-      <p>{index} index</p>
+      <button onClick={eventHandler}>click here</button>
+      <p>{item.name}</p>
+      <button onClick={eventHandlerHide}>
+        {hide ? "hide" : "show"} details
+      </button>
+      {hide && <p>{item.alt}</p>}
     </div>
   );
 }
