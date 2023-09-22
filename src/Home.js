@@ -10,12 +10,16 @@ export default function Gallery() {
   const eventHandler = () => {
     setIndex(index + 1);
   };
+  console.log(hide, "hide before");
   // show / hide toggle working
   const eventHandlerHide = () => {
+    // eta -- true thakle -- false kore dicche --- false thakle -- true kore dicche
     setHide(!hide);
+    console.log(hide, "hide inside");
   };
   //
-  console.log(hide, "hide");
+
+  console.log(hide, "hide after");
 
   let item = sculptureList[index];
 
