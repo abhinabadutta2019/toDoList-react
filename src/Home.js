@@ -10,26 +10,18 @@ export default function Gallery() {
   const eventHandler = () => {
     setIndex(index + 1);
   };
-  //
+  // show / hide toggle working
   const eventHandlerHide = () => {
-    setHide(true);
+    setHide(!hide);
   };
   //
   console.log(hide, "hide");
-  // console.log(index, "index");
 
-  // console.log(sculptureList.length, "length");
-  let item;
-
-  // ??? eta diye -- loop ta stop/ break kora jacche naa
-
-  if (index < sculptureList.length) {
-    item = sculptureList[index];
-  }
+  let item = sculptureList[index];
 
   return (
     <div>
-      <button onClick={eventHandler}>click here</button>
+      <button onClick={eventHandler}>next topic</button>
       <p>{item.name}</p>
       <button onClick={eventHandlerHide}>
         {hide ? "hide" : "show"} details
