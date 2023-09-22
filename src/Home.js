@@ -1,36 +1,52 @@
 import { useState } from "react";
-import { sculptureList } from "./TaskList.js";
+import { sculptureList } from "./AddTask.js";
 
 export default function Gallery() {
-  //
   const [index, setIndex] = useState(0);
-  const [hide, setHide] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   //
+  // const [decrease, setDecrease] = useState();
 
-  const eventHandler = () => {
-    setIndex(index + 1);
-  };
-  console.log(hide, "hide before");
-  // show / hide toggle working
-  const eventHandlerHide = () => {
-    // eta -- true thakle -- false kore dicche --- false thakle -- true kore dicche
-    setHide(!hide);
-    console.log(hide, "hide inside");
-  };
-  //
+  // next/ increase
+  function handleNextClick() {
+    // if statement- not to cross the -- array length
+    if (index < sculptureList.length - 1) {
+      //
+      console.log(sculptureList.length, "length");
+      console.log(index, "index");
+      setIndex(index + 1);
+    }
+  }
+  // previous/ decrease
+  function handlePreviousClick() {
+    if (index >= 1) {
+      console.log(index, "index");
+      setIndex(index - 1);
+    }
+  }
 
-  console.log(hide, "hide after");
+  // show/ hide
+  function handleMoreClick() {
+    setShowMore(!showMore);
+  }
 
-  let item = sculptureList[index];
-
+  let sculpture = sculptureList[index];
   return (
-    <div>
-      <button onClick={eventHandler}>next topic</button>
-      <p>{item.name}</p>
-      <button onClick={eventHandlerHide}>
-        {hide ? "hide" : "show"} details
+    <>
+      <button onClick={handleNextClick}>Next</button>
+      <button onClick={handlePreviousClick}>Previous</button>
+      <h2>
+        <i>{sculpture.name} </i>
+        by {sculpture.artist}
+      </h2>
+      <h3>
+        ({index + 1} of {sculptureList.length})
+      </h3>
+      <button onClick={handleMoreClick}>
+        {showMore ? "Hide" : "Show"} details
       </button>
-      {hide && <p>{item.alt}</p>}
-    </div>
+      {showMore && <p>{sculpture.description}</p>}
+      <img src={sculpture.url} alt={sculpture.alt} />
+    </>
   );
 }
