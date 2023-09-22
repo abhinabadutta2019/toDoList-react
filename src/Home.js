@@ -1,20 +1,27 @@
-// e.preventDefault() is different from --- e.stopPropagation()
+import { useState } from "react";
+import { myList } from "./AddTask.js";
 
-const Home = () => {
+export default function Gallery() {
   //
+  const [index, setIndex] = useState(0);
 
-  const eventHandler = (e) => {
-    // e.preventDefault();
-    alert("Hi");
+  let hawa = 0;
+  // console.log(index);
+
+  const eventHandler = () => {
+    for (let i = 0; i < 10; i++) {
+      // hawa = i;
+      setIndex(index + 1);
+      hawa = index;
+    }
+    return hawa;
   };
-  //
 
   return (
-    <form onSubmit={eventHandler}>
-      <input />
-      <button>Click here</button>
-    </form>
+    <div>
+      <button onClick={eventHandler}></button>
+      <p>{hawa} hawa</p>
+      <p>{index} index</p>
+    </div>
   );
-};
-
-export default Home;
+}
