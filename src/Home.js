@@ -1,52 +1,28 @@
 import { useState } from "react";
-import { sculptureList } from "./AddTask.js";
 
-export default function Gallery() {
-  const [index, setIndex] = useState(0);
-  const [showMore, setShowMore] = useState(false);
+const Home = () => {
   //
-  // const [decrease, setDecrease] = useState();
+  // console.log("Hi");
+  const [value, setValue] = useState(true);
+  //
 
-  // next/ increase
-  function handleNextClick() {
-    // if statement- not to cross the -- array length
-    if (index < sculptureList.length - 1) {
-      //
-      console.log(sculptureList.length, "length");
-      console.log(index, "index");
-      setIndex(index + 1);
-    }
-  }
-  // previous/ decrease
-  function handlePreviousClick() {
-    if (index >= 1) {
-      console.log(index, "index");
-      setIndex(index - 1);
-    }
-  }
-
-  // show/ hide
-  function handleMoreClick() {
-    setShowMore(!showMore);
-  }
-
-  let sculpture = sculptureList[index];
+  //
+  const eventHandler = () => {
+    setValue(!value);
+    //
+    console.log(value, "value");
+    // not working
+    // const go = value ? "start" : "stop";
+  };
+  //
   return (
-    <>
-      <button onClick={handleNextClick}>Next</button>
-      <button onClick={handlePreviousClick}>Previous</button>
-      <h2>
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
-      </h3>
-      <button onClick={handleMoreClick}>
-        {showMore ? "Hide" : "Show"} details
-      </button>
-      {showMore && <p>{sculpture.description}</p>}
-      <img src={sculpture.url} alt={sculpture.alt} />
-    </>
+    <div>
+      <p>{value}</p>
+      <button onClick={eventHandler}>change button</button>
+      {/* using conditional and state */}
+      <p>{value ? <>stay</> : <>go</>}</p>
+    </div>
   );
-}
+};
+
+export default Home;
