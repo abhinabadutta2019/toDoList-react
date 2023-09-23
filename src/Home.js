@@ -15,7 +15,7 @@ const Home = () => {
     //
     setLists(newLists);
   };
-  /////////////\\\\\\\\\\\\\\\///////////
+  /////////////\\\\\\\\\\\\\\\/////////
   const addTask = () => {
     // console.log();
     const taskNameValue = document.getElementById("taskName").value;
