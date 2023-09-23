@@ -19,7 +19,7 @@ const Home = () => {
     <div>
       <p>{value}</p>
       <button onClick={eventHandler}>change button</button>
-      {/* using conditional and state */}
+      {/* using conditional, ternery and useState method */}
       <p>{value ? <>stay</> : <>go</>}</p>
     </div>
   );
