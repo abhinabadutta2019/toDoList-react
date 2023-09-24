@@ -1,34 +1,31 @@
 import { useState } from "react";
 
-const Home = () => {
-  //
-  // console.log("Hi");
-  const [value, setValue] = useState(true);
-  //
+export default function RequestTracker() {
+  const [pending, setPending] = useState(0);
+  const [completed, setCompleted] = useState(0);
 
-  //
-  const eventHandler = () => {
-    setValue(!value);
-    //
-    console.log(value, "value");
-    // not working
-    // const go = value ? "start" : "stop";
-  };
-  //
+  async function handleClick() {
+    setPending(pending + 1);
+    // await delay(3000);
+
+    setCompleted(completed + 1);
+
+    if (pending > 0) {
+      setPending(pending - 1);
+    }
+  }
+
   return (
-    <div>
-      <p>{value}</p>
-      <button onClick={eventHandler}>change button</button>
-      {/* using conditional, ternery and useState method */}
-      <h3>
-        {value ? (
-          <span style={{ color: "darkred" }}>stay</span>
-        ) : (
-          <span style={{ color: "darkgreen" }}>go</span>
-        )}
-      </h3>
-    </div>
+    <>
+      <h3>Pending: {pending}</h3>
+      <h3>Completed: {completed}</h3>
+      <button onClick={handleClick}>Buy</button>
+    </>
   );
-};
+}
 
-export default Home;
+function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
