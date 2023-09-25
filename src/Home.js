@@ -5,32 +5,40 @@ const Home = () => {
 
   //
   const eventHandlerA = (e) => {
-    setObject({ ...object, a: e.target.value });
+    console.log([e.target.name]);
+    //
+    setObject({
+      ...object,
+      [e.target.name]: e.target.value,
+      // a: e.target.value
+    });
   };
 
-  //
-  const eventHandlerB = (e) => {
-    setObject({ ...object, b: e.target.value });
-  };
-  //
-  const eventHandlerC = (e) => {
-    setObject({ ...object, c: e.target.value });
-    // console.log("Hi");
-  };
+  // //
+  // const eventHandlerB = (e) => {
+  //   setObject({ ...object, b: e.target.value });
+  // };
+  // //
+  // const eventHandlerC = (e) => {
+  //   setObject({ ...object, c: e.target.value });
+  //   // console.log("Hi");
+  // };
   //
   return (
     <>
       <label>
         A:
-        <input value={object.a} onChange={eventHandlerA} />
+        <input name="a" value={object.a} onChange={eventHandlerA} />
       </label>
       <label>
         B:
-        <input value={object.b} onChange={eventHandlerB} />
+        {/* <input value={object.b} onChange={eventHandlerB} /> */}
+        <input name="b" value={object.b} onChange={eventHandlerA} />
       </label>
       <label>
         C:
-        <input value={object.c} onChange={eventHandlerC} />
+        {/* <input value={object.c} onChange={eventHandlerC} /> */}
+        <input name="c" value={object.c} onChange={eventHandlerA} />
       </label>
 
       {/*  */}
