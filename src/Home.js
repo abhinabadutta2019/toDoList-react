@@ -1,50 +1,28 @@
 import { useState } from "react";
 
 const Home = () => {
-  const [object, setObject] = useState({ a: "Abhi", b: "Naba", c: "dutta" });
-
+  const [value, setValue] = useState({ x: "Abhi", y: "naba" });
   //
-  const eventHandlerA = (e) => {
-    console.log([e.target.name]);
+  const eventHandlerX = () => {
     //
-    setObject({
-      ...object,
-      [e.target.name]: e.target.value,
-      // a: e.target.value
-    });
+    setValue({ ...value, x: "Addd" });
   };
-
-  // //
-  // const eventHandlerB = (e) => {
-  //   setObject({ ...object, b: e.target.value });
-  // };
-  // //
-  // const eventHandlerC = (e) => {
-  //   setObject({ ...object, c: e.target.value });
-  //   // console.log("Hi");
-  // };
+  //
+  const eventHandlerY = () => {
+    setValue({ ...value, y: "vdddd" });
+  };
+  //
+  const eventHandlerBoth = () => {
+    setValue({ y: "xxxx", x: "yyyy" });
+  };
   //
   return (
     <>
-      <label>
-        A:
-        <input name="a" value={object.a} onChange={eventHandlerA} />
-      </label>
-      <label>
-        B:
-        {/* <input value={object.b} onChange={eventHandlerB} /> */}
-        <input name="b" value={object.b} onChange={eventHandlerA} />
-      </label>
-      <label>
-        C:
-        {/* <input value={object.c} onChange={eventHandlerC} /> */}
-        <input name="c" value={object.c} onChange={eventHandlerA} />
-      </label>
-
-      {/*  */}
-      <p>{object.a}</p>
-      <p>{object.b}</p>
-      <p>{object.c}</p>
+      <button onClick={eventHandlerX}>change x</button>
+      <button onClick={eventHandlerY}>change y</button>
+      <button onClick={eventHandlerBoth}>change Both</button>
+      <p>x:{value.x}</p>
+      <p>y:{value.y}</p>
     </>
   );
 };
