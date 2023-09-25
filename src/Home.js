@@ -1,30 +1,42 @@
 import { useState } from "react";
 
 const Home = () => {
-  const [value, setValue] = useState({ x: "Abhi", y: { ya: "AA", yb: "BB" } });
+  const [data, setdata] = useState({
+    name: "Abhi",
+    work: { title: "chobi", city: "sodepur" },
+  });
   //
-  const eventHandlerX = () => {
+  //e.target.data
+  const nameEvent = (e) => {
     //
-    setValue({ ...value, x: "Addd" });
+    console.log(data, "data");
+    //
+    setdata({ ...data, name: e.target.value });
   };
-  // //
-  const eventHandlerYA = () => {
-    console.log(value.y.ya);
-    setValue({ ...value, y: { ...value.y, ya: "YAYAYA" } });
+  //
+  const cityEvent = (e) => {
+    //
+    console.log(data, "data cityEvent");
+    //
+    setdata({ ...data, work: { ...data.work, city: e.target.value } });
   };
-  // //
-  // const eventHandlerBoth = () => {
-  //   setValue({ y: "xxxx", x: "yyyy" });
-  // };
   //
   return (
     <>
-      <button onClick={eventHandlerX}>change x</button>
-      <button onClick={eventHandlerYA}>change ya</button>
-      {/* <button onClick={eventHandlerBoth}>change Both</button> */}
-      <p>x:{value.x}</p>
-      <p>y.ya:{value.y.ya}</p>
-      <p>y.yb:{value.y.yb}</p>
+      <p>
+        name:
+        <input value={data.name} onChange={nameEvent} />
+      </p>
+      <p>
+        work.city:
+        <input value={data.work.city} onChange={cityEvent} />
+      </p>
+
+      {/*  */}
+
+      <p>name:{data.name}</p>
+      <p>work.title:{data.work.title}</p>
+      <p>work.city:{data.work.city}</p>
     </>
   );
 };
