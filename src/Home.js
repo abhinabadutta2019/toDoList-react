@@ -1,8 +1,8 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useImmer } from "use-immer";
 
 const Home = () => {
-  const [data, setdata] = useState({
+  const [data, updateData] = useImmer({
     name: "Abhi",
     work: { title: "chobi", city: "sodepur" },
   });
@@ -10,17 +10,36 @@ const Home = () => {
   //e.target.data
   const nameEvent = (e) => {
     //
-    console.log(data, "data");
+    // console.log(data, "data");
     //
-    setdata({ ...data, name: e.target.value });
+    // setdata({ ...data, name: e.target.value });
+
+    updateData((draft) => {
+      draft.name = e.target.value;
+      // return draft.name;
+    });
+    return updateData;
   };
+  // function nameEvent(e) {
+  // updateData((draft) => {
+  //   draft.name = e.target.value;
+  // });
+  // }
   //
-  const cityEvent = (e) => {
-    //
-    console.log(data, "data cityEvent");
-    //
-    setdata({ ...data, work: { ...data.work, city: e.target.value } });
-  };
+  //
+  //
+  // const cityEvent = (e) => {
+  //   //
+  //   console.log(data, "data cityEvent");
+  //   //
+  //   setdata({ ...data, work: { ...data.work, city: e.target.value } });
+  // };
+  //
+  function cityEvent(e) {
+    updateData((draft) => {
+      draft.work.city = e.target.value;
+    });
+  }
   //
   return (
     <>
@@ -30,7 +49,7 @@ const Home = () => {
       </p>
       <p>
         work.city:
-        <input value={data.work.city} onChange={cityEvent} />
+        <input onChange={cityEvent} />
       </p>
 
       {/*  */}
