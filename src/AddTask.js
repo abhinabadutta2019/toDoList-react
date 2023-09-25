@@ -1,35 +1,54 @@
 import { useState } from "react";
-export default function MovingDot() {
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0,
-  });
+
+export default function Box({ children, color, position, onMove }) {
+  const [lastCoordinates, setLastCoordinates] = useState(null);
+
+  function handlePointerDown(e) {
+    e.target.setPointerCapture(e.pointerId);
+    setLastCoordinates({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  }
+
+  function handlePointerMove(e) {
+    if (lastCoordinates) {
+      setLastCoordinates({
+        x: e.clientX,
+        y: e.clientY,
+      });
+      const dx = e.clientX - lastCoordinates.x;
+      const dy = e.clientY - lastCoordinates.y;
+      onMove(dx, dy);
+    }
+  }
+
+  function handlePointerUp(e) {
+    setLastCoordinates(null);
+  }
+
   return (
     <div
-      onPointerMove={(e) => {
-        setPosition({
-          x: e.clientX,
-          y: e.clientY,
-        });
-      }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
       style={{
-        position: "relative",
-        width: "100vw",
-        height: "100vh",
+        width: 100,
+        height: 100,
+        cursor: "grab",
+        backgroundColor: color,
+        position: "absolute",
+        border: "1px solid black",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        transform: `translate(
+          ${position.x}px,
+          ${position.y}px
+        )`,
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          backgroundColor: "red",
-          borderRadius: "50%",
-          transform: `translate(${position.x}px, ${position.y}px)`,
-          left: -10,
-          top: -10,
-          width: 20,
-          height: 20,
-        }}
-      />
+      {children}
     </div>
   );
 }

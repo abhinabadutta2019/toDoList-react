@@ -1,64 +1,50 @@
-// import { useState } from "react";
-import { useImmer } from "use-immer";
+import { useState } from "react";
 
-const Home = () => {
-  const [data, updateData] = useImmer({
-    name: "Abhi",
-    work: { title: "chobi", city: "sodepur" },
+export default function Form() {
+  const [person, setPerson] = useState({
+    name: "Niki de Saint Phalle",
+    artwork: {
+      title: "Blue Nana",
+      city: "Hamburg",
+      // image: "https://i.imgur.com/Sd1AgUOm.jpg",
+    },
   });
   //
-  //e.target.data
-  const nameEvent = (e) => {
-    //
-    // console.log(data, "data");
-    //
-    // setdata({ ...data, name: e.target.value });
-
-    updateData((draft) => {
-      draft.name = e.target.value;
-      // return draft.name;
-    });
-    return updateData;
+  const nameHandler = (e) => {
+    setPerson({ ...person, name: e.target.value });
   };
-  // function nameEvent(e) {
-  // updateData((draft) => {
-  //   draft.name = e.target.value;
-  // });
-  // }
+
   //
-  //
-  //
-  // const cityEvent = (e) => {
-  //   //
-  //   console.log(data, "data cityEvent");
-  //   //
-  //   setdata({ ...data, work: { ...data.work, city: e.target.value } });
-  // };
-  //
-  function cityEvent(e) {
-    updateData((draft) => {
-      draft.work.city = e.target.value;
+  const titleHandler = (e) => {
+    setPerson({
+      ...person,
+      artwork: { ...person.artwork, title: e.target.value },
     });
-  }
+  };
   //
+
+  const cityHandler = (e) => {
+    setPerson({
+      ...person,
+      artwork: { ...person.artwork, city: e.target.value },
+    });
+  };
+
+  //
+
   return (
     <>
       <p>
-        name:
-        <input value={data.name} onChange={nameEvent} />
+        Name: <input value={person.name} onChange={nameHandler} />
       </p>
       <p>
-        work.city:
-        <input onChange={cityEvent} />
+        artwork.title:
+        <input value={person.artwork.title} onChange={titleHandler} />
       </p>
-
-      {/*  */}
-
-      <p>name:{data.name}</p>
-      <p>work.title:{data.work.title}</p>
-      <p>work.city:{data.work.city}</p>
+      <p>
+        artwork.city:{" "}
+        <input value={person.artwork.city} onChange={cityHandler} />
+      </p>
     </>
   );
-};
-
-export default Home;
+}
