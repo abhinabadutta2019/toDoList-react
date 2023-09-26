@@ -1,50 +1,36 @@
 import { useState } from "react";
 
-export default function Form() {
-  const [person, setPerson] = useState({
-    name: "Niki de Saint Phalle",
-    artwork: {
-      title: "Blue Nana",
-      city: "Hamburg",
-      // image: "https://i.imgur.com/Sd1AgUOm.jpg",
-    },
-  });
-  //
-  const nameHandler = (e) => {
-    setPerson({ ...person, name: e.target.value });
-  };
+let nextId = 0;
+// console.log(nextId, "nextId");
 
+const Home = () => {
   //
-  const titleHandler = (e) => {
-    setPerson({
-      ...person,
-      artwork: { ...person.artwork, title: e.target.value },
-    });
+  const [name, setName] = useState("");
+  const [array, setArray] = useState([]);
+  //
+  const eventOnChange = (e) => {
+    setName(e.target.value);
   };
   //
-
-  const cityHandler = (e) => {
-    setPerson({
-      ...person,
-      artwork: { ...person.artwork, city: e.target.value },
-    });
+  const eventOnButton = () => {
+    setArray([...array, { id: nextId++, name: name }]);
   };
-
   //
 
   return (
     <>
-      <p>
-        Name: <input value={person.name} onChange={nameHandler} />
-      </p>
-      <p>
-        artwork.title:
-        <input value={person.artwork.title} onChange={titleHandler} />
-      </p>
-      <p>
-        artwork.city:{" "}
-        <input value={person.artwork.city} onChange={cityHandler} />
-      </p>
+      name: <input onChange={eventOnChange} />
+      <button onClick={eventOnButton}>submit</button>
+      <p>Name:{name}</p>
+      <>
+        {array.map((item) => (
+          <li key={item.id}>
+            Name : {item.name}-- id :{item.id}
+          </li>
+        ))}
+      </>
     </>
   );
-}
+};
+
+export default Home;
