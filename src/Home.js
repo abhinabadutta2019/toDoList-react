@@ -16,6 +16,9 @@ const Home = () => {
     setArray([...array, { id: nextId++, name: name }]);
   };
   //
+  const eventOnDelete = (id) => {
+    setArray(array.filter((item) => item.id !== id));
+  };
 
   return (
     <>
@@ -25,7 +28,8 @@ const Home = () => {
       <>
         {array.map((item) => (
           <li key={item.id}>
-            Name : {item.name}-- id :{item.id}
+            Name : {item.name}-- id :{item.id}{" "}
+            <button onClick={() => eventOnDelete(item.id)}>delete</button>
           </li>
         ))}
       </>
