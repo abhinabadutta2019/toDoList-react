@@ -9,7 +9,7 @@ const Home = () => {
   const eventHandler = (i) => {
     //
 
-    // console.log(i, i);
+    console.log(i, i);
 
     const nextCouters = value.map((item, index) => {
       // console.log(item++);
