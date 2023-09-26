@@ -1,38 +1,44 @@
 import { useState } from "react";
 
-let nextId = 0;
-// console.log(nextId, "nextId");
+let initialCounters = [0, 0, 0];
 
 const Home = () => {
   //
-  const [name, setName] = useState("");
-  const [array, setArray] = useState([]);
+  const [value, setValue] = useState(initialCounters);
   //
-  const eventOnChange = (e) => {
-    setName(e.target.value);
-  };
-  //
-  const eventOnButton = () => {
-    setArray([...array, { id: nextId++, name: name }]);
-  };
-  //
-  const eventOnDelete = (id) => {
-    setArray(array.filter((item) => item.id !== id));
+  const eventHandler = (i) => {
+    //
+
+    // console.log(i, i);
+
+    const nextCouters = value.map((item, index) => {
+      // console.log(item++);
+      // console.log(item + 1);
+
+      if (index == i) {
+        return item + 1;
+      } else {
+        return item;
+      }
+    });
+    //
+    setValue(nextCouters);
   };
 
   return (
     <>
-      name: <input onChange={eventOnChange} />
-      <button onClick={eventOnButton}>submit</button>
-      <p>Name:{name}</p>
-      <>
-        {array.map((item) => (
-          <li key={item.id}>
-            Name : {item.name}-- id :{item.id}{" "}
-            <button onClick={() => eventOnDelete(item.id)}>delete</button>
-          </li>
-        ))}
-      </>
+      {value.map((item, index) => (
+        <li key={index}>
+          {value[index]}
+          <button
+            onClick={() => {
+              eventHandler(index);
+            }}
+          >
+            +1
+          </button>{" "}
+        </li>
+      ))}
     </>
   );
 };
