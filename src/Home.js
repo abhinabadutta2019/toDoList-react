@@ -1,40 +1,52 @@
 import { useState } from "react";
 
-let initialArray = [0, 0, 0];
+let nextId = 3;
+const initialArtists = [
+  { id: 0, name: "Marta Colvin Andrade" },
+  { id: 1, name: "Lamidi Olonade Fakeye" },
+  { id: 2, name: "Louise Nevelson" },
+];
+
+//
 
 const Home = () => {
-  const [array, setArray] = useState(initialArray);
+  const [name, setName] = useState("");
+  const [array, setArray] = useState(initialArtists);
   //
-  const eventHandler = (pI) => {
-    const finalArray = array.map((oneItem, i) => {
-      // console.log(oneItem, i);
-      if (pI == i) {
-        return (oneItem = oneItem + 1);
-      } else {
-        return oneItem;
-      }
-    });
-    setArray(finalArray);
-  };
+  const inputEvent = (e) => {
+    setName(e.target.value);
 
+    console.log(name);
+  };
+  //
+  const buttonEvent = () => {
+    // nextId++
+    nextId = nextId + 1;
+    const newObj = { id: nextId, name: name };
+    //
+    console.log(newObj);
+    //
+    let newArray = [...array.slice(0, 1), newObj, ...array.slice(1)];
+    //
+    // console.log(newArray, "newArray");
+    //
+    setArray(newArray);
+    //input field empty korbe after submit
+    // setName("");
+    //
+  };
+  //
   return (
     <>
-      {array.map((item, index) => (
-        <li key={index}>
-          {item}--
-          <button
-            onClick={() => {
-              eventHandler(index);
-            }}
-          >
-            +1
-          </button>
-        </li>
+      <p>
+        Name : <input onChange={inputEvent} />{" "}
+        <button onClick={buttonEvent}>submit</button>
+      </p>
+      {array.map((oneItem) => (
+        <li key={oneItem.id}>{oneItem.name}</li>
       ))}
     </>
   );
 };
-
-//
 
 export default Home;
