@@ -1,46 +1,40 @@
 import { useState } from "react";
 
-let initialCounters = [0, 0, 0];
+let initialArray = [0, 0, 0];
 
 const Home = () => {
+  const [array, setArray] = useState(initialArray);
   //
-  const [value, setValue] = useState(initialCounters);
-  //
-  const eventHandler = (i) => {
-    //
-
-    console.log(i, i);
-
-    const nextCouters = value.map((item, index) => {
-      // console.log(item++);
-      // console.log(item + 1);
-
-      if (index == i) {
-        return item + 1;
+  const eventHandler = (pI) => {
+    const finalArray = array.map((oneItem, i) => {
+      // console.log(oneItem, i);
+      if (pI == i) {
+        return (oneItem = oneItem + 1);
       } else {
-        return item;
+        return oneItem;
       }
     });
-    //
-    setValue(nextCouters);
+    setArray(finalArray);
   };
 
   return (
     <>
-      {value.map((item, index) => (
+      {array.map((item, index) => (
         <li key={index}>
-          {value[index]}
+          {item}--
           <button
             onClick={() => {
               eventHandler(index);
             }}
           >
             +1
-          </button>{" "}
+          </button>
         </li>
       ))}
     </>
   );
 };
+
+//
 
 export default Home;
