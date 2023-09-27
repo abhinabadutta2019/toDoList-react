@@ -10,6 +10,7 @@ const initialList = [
 const Home = () => {
   //
   const [myList, setMyList] = useState(initialList);
+  const [yourList, setYourList] = useState(initialList);
 
   // this part of syntax-- done by gpt
   const eventChange = (e, id) => {
@@ -24,10 +25,24 @@ const Home = () => {
     setMyList(updatedList);
   };
   //
+  const yourEventChange = (e, id) => {
+    const updatedList = yourList.map((item) => {
+      if (item.id == id) {
+        // console.log(item);
+        return { ...item, seen: !item.seen };
+      } else {
+        return item;
+      }
+    });
+    setYourList(updatedList);
+  };
+  //
   return (
     <>
       <p> myList</p>
       <ItemList artworks={myList} eventChange={eventChange} />
+      <p> yourList</p>
+      <ItemList artworks={yourList} eventChange={yourEventChange} />
     </>
   );
 };
