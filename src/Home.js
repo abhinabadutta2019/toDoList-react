@@ -1,49 +1,46 @@
 import { useState } from "react";
 
 let nextId = 3;
-const initialArtists = [
-  { id: 0, name: "Marta Colvin Andrade" },
-  { id: 1, name: "Lamidi Olonade Fakeye" },
-  { id: 2, name: "Louise Nevelson" },
+const initialList = [
+  { id: 0, title: "Big Bellies", seen: false },
+  { id: 1, title: "Lunar Landscape", seen: false },
+  { id: 2, title: "Terracotta Army", seen: true },
 ];
 
-//
-
 const Home = () => {
-  const [name, setName] = useState("");
-  const [array, setArray] = useState(initialArtists);
   //
-  const inputEvent = (e) => {
-    setName(e.target.value);
+  const [myList, setMyList] = useState(initialList);
 
-    console.log(name);
-  };
   //
-  const buttonEvent = () => {
-    // nextId++
-    nextId = nextId + 1;
-    const newObj = { id: nextId, name: name };
-    //
-    console.log(newObj);
-    //
-    let newArray = [...array.slice(0, 1), newObj, ...array.slice(1)];
-    //
-    // console.log(newArray, "newArray");
-    //
-    setArray(newArray);
-    //input field empty korbe after submit
-    // setName("");
-    //
+  const eventChange = (e) => {
+    myList.map((item, index) => {
+      return console.log(item);
+    });
   };
   //
   return (
     <>
-      <p>
-        Name : <input onChange={inputEvent} />{" "}
-        <button onClick={buttonEvent}>submit</button>
-      </p>
-      {array.map((oneItem) => (
-        <li key={oneItem.id}>{oneItem.name}</li>
+      <ItemList artworks={myList} eventChange={eventChange} />
+    </>
+  );
+};
+
+const ItemList = ({ artworks, eventChange }) => {
+  return (
+    <>
+      {artworks.map((artwork) => (
+        <li key={artwork.id}>
+          {artwork.title}--
+          {/* if true -- show then */}
+          {artwork.seen === true && <span>Hi</span>}
+          <button
+            onClick={(e) => {
+              eventChange();
+            }}
+          >
+            change
+          </button>
+        </li>
       ))}
     </>
   );
