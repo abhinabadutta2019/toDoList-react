@@ -1,71 +1,53 @@
 import { useState } from "react";
 
-let nextId = 3;
-const initialList = [
-  { id: 0, title: "Big Bellies", seen: false },
-  { id: 1, title: "Lunar Landscape", seen: false },
-  { id: 2, title: "Terracotta Army", seen: true },
+const initialProducts = [
+  {
+    id: 0,
+    name: "Baklava",
+    count: 1,
+  },
+  {
+    id: 1,
+    name: "Cheese",
+    count: 5,
+  },
+  {
+    id: 2,
+    name: "Spaghetti",
+    count: 2,
+  },
 ];
 
-const Home = () => {
-  //
-  const [myList, setMyList] = useState(initialList);
-  const [yourList, setYourList] = useState(initialList);
+export default function ShoppingCart() {
+  const [products, setProducts] = useState(initialProducts);
 
-  // this part of syntax-- done by gpt
-  const eventChange = (e, id) => {
-    const updatedList = myList.map((item) => {
-      if (item.id == id) {
-        // console.log(item);
-        return { ...item, seen: !item.seen };
+  function handleIncreaseClick(productId) {
+    const updatedArray = products.map((oneProd) => {
+      if (oneProd.id == productId) {
+        console.log(oneProd);
+        return { ...oneProd, count: oneProd.count + 1 };
       } else {
-        return item;
+        return oneProd;
       }
     });
-    setMyList(updatedList);
-  };
-  //
-  const yourEventChange = (e, id) => {
-    const updatedList = yourList.map((item) => {
-      if (item.id == id) {
-        // console.log(item);
-        return { ...item, seen: !item.seen };
-      } else {
-        return item;
-      }
-    });
-    setYourList(updatedList);
-  };
-  //
-  return (
-    <>
-      <p> myList</p>
-      <ItemList artworks={myList} eventChange={eventChange} />
-      <p> yourList</p>
-      <ItemList artworks={yourList} eventChange={yourEventChange} />
-    </>
-  );
-};
 
-const ItemList = ({ artworks, eventChange }) => {
+    setProducts(updatedArray);
+  }
+
   return (
-    <>
-      {artworks.map((artwork) => (
-        <li key={artwork.id}>
-          {artwork.title}--
-          {/* if true -- show then */}
-          {artwork.seen === true && <span>Hi</span>}
+    <ul>
+      {products.map((product) => (
+        <li key={product.id}>
+          {product.name} (<b>{product.count}</b>)
           <button
-            onClick={(e) => {
-              eventChange(e, artwork.id);
+            onClick={() => {
+              handleIncreaseClick(product.id);
             }}
           >
-            change
+            +1
           </button>
         </li>
       ))}
-    </>
+    </ul>
   );
-};
-
-export default Home;
+}
