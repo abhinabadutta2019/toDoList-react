@@ -11,15 +11,22 @@ const Home = () => {
   //
   const [myList, setMyList] = useState(initialList);
 
-  //
-  const eventChange = (e) => {
-    myList.map((item, index) => {
-      return console.log(item);
+  // this part of syntax-- done by gpt
+  const eventChange = (e, id) => {
+    const updatedList = myList.map((item) => {
+      if (item.id == id) {
+        // console.log(item);
+        return { ...item, seen: !item.seen };
+      } else {
+        return item;
+      }
     });
+    setMyList(updatedList);
   };
   //
   return (
     <>
+      <p> myList</p>
       <ItemList artworks={myList} eventChange={eventChange} />
     </>
   );
@@ -35,7 +42,7 @@ const ItemList = ({ artworks, eventChange }) => {
           {artwork.seen === true && <span>Hi</span>}
           <button
             onClick={(e) => {
-              eventChange();
+              eventChange(e, artwork.id);
             }}
           >
             change
