@@ -1,53 +1,55 @@
 import { useState } from "react";
+import { TaskList } from "./TaskList";
 
-const initialProducts = [
-  {
-    id: 0,
-    name: "Baklava",
-    count: 1,
-  },
-  {
-    id: 1,
-    name: "Cheese",
-    count: 5,
-  },
-  {
-    id: 2,
-    name: "Spaghetti",
-    count: 2,
-  },
+let nextId = 3;
+const initialTodos = [
+  { id: 0, title: "Buy milk", done: true },
+  { id: 1, title: "Eat tacos", done: false },
+  { id: 2, title: "Brew tea", done: false },
 ];
 
-export default function ShoppingCart() {
-  const [products, setProducts] = useState(initialProducts);
+const Home = () => {
+  const [todos, setTodos] = useState(initialTodos);
 
-  function handleIncreaseClick(productId) {
-    const updatedArray = products.map((oneProd) => {
-      if (oneProd.id == productId) {
-        console.log(oneProd);
-        return { ...oneProd, count: oneProd.count + 1 };
+  const [inputValue, setinputValue] = useState("");
+
+  //
+  const inputHandler = (e) => {
+    // console.log(e.target.value);
+    //this to get input field value
+    setinputValue(e.target.value);
+  };
+  //
+
+  const buttonSubmit = (e) => {
+    // console.log("Hi");
+    const mapValue = todos.map((oneItem, todoId) => {
+      // console.log(oneItem);
+      if (oneItem.id == todoId) {
+        console.log(oneItem.id, "oneItem.id");
+        console.log(todoId, "todoId");
+        return { ...oneItem, title: inputValue };
       } else {
-        return oneProd;
+        return oneItem;
       }
     });
 
-    setProducts(updatedArray);
-  }
+    setTodos(mapValue);
+  };
 
   return (
-    <ul>
-      {products.map((product) => (
-        <li key={product.id}>
-          {product.name} (<b>{product.count}</b>)
-          <button
-            onClick={() => {
-              handleIncreaseClick(product.id);
-            }}
-          >
-            +1
-          </button>
-        </li>
-      ))}
-    </ul>
+    <>
+      <TaskList
+        todos={todos}
+        inputHandler={inputHandler}
+        buttonSubmit={buttonSubmit}
+      />
+    </>
   );
-}
+};
+
+//
+
+//
+
+export default Home;
