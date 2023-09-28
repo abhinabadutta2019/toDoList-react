@@ -1,23 +1,10 @@
-import { useState } from "react";
-
 const TaskList = ({
   todos,
-  // inputHandler,
+  inputHandler,
   buttonSubmit,
   onCheckMark,
   deleteHandle,
 }) => {
-  //
-  const [inputValue, setinputValue] = useState("");
-  //
-  const inputHandler = (e) => {
-    console.log(e.target.value);
-    //this to get input field value
-    setinputValue(e.target.value);
-
-    // console.log(todos, "todos");
-  };
-  //
   return (
     <>
       <h3>All tasks</h3>

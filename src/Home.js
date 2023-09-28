@@ -38,22 +38,20 @@ const Home = () => {
   //////////////////////////////////////////////////////
 
   //
-  // const inputHandler = (e) => {
-  //   console.log(e.target.value);
-  //   //this to get input field value
-  //   setinputValue(e.target.value);
+  const inputHandler = (e) => {
+    console.log(e.target.value);
+    //this to get input field value
+    setinputValue(e.target.value);
 
-  //   // console.log(todos, "todos");
-  // };
+    // console.log(todos, "todos");
+  };
 
   //
   const deleteHandle = (todoId) => {
     // console.log("Hi");
 
     const filterValue = todos.filter((oneItem) => {
-      if (oneItem.id != todoId) {
-        return oneItem;
-      }
+      return oneItem.id !== todoId;
     });
 
     setTodos(filterValue);
@@ -63,7 +61,7 @@ const Home = () => {
     // console.log("HI");
 
     const mapValue = todos.map((oneItem) => {
-      if (oneItem.id == todoId) {
+      if (oneItem.id === todoId) {
         return { ...oneItem, done: !oneItem.done };
       } else {
         return oneItem;
@@ -79,7 +77,7 @@ const Home = () => {
     //
     const mapValue = todos.map((oneItem) => {
       // console.log(oneItem);
-      if (oneItem.id == todoId) {
+      if (oneItem.id === todoId) {
         // console.log(oneItem.id, "oneItem.id");
         // console.log(todoId, "todoId");
         return { ...oneItem, title: inputValue };
@@ -97,7 +95,7 @@ const Home = () => {
       {/*  */}
       <TaskList
         todos={todos}
-        // inputHandler={inputHandler}
+        inputHandler={inputHandler}
         buttonSubmit={buttonSubmit}
         onCheckMark={onCheckMark}
         deleteHandle={deleteHandle}
