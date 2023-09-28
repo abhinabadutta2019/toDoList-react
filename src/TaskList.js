@@ -32,7 +32,7 @@ const TaskList = ({
           <p>
             <input
               onChange={(e) => {
-                inputHandler(e);
+                inputHandler(e, todo.id);
               }}
             />
 
