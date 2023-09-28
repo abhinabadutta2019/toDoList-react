@@ -7,6 +7,7 @@ const TaskList = ({
 }) => {
   return (
     <>
+      <h3>All tasks</h3>
       {todos.map((todo) => (
         <li key={todo.id}>
           <button
@@ -17,7 +18,7 @@ const TaskList = ({
             delete
           </button>
           <br />
-          {todo.title}--{todo.done.toString()}
+          {todo.id}---- {todo.title}--{todo.done.toString()}
           {/* true false button */}
           <button
             onClick={() => {

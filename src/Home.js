@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TaskList } from "./TaskList";
+import { AddTask } from "./AddTask";
 
 let nextId = 3;
 const initialTodos = [
@@ -13,9 +14,32 @@ const Home = () => {
 
   const [inputValue, setinputValue] = useState("");
 
+  //////////////////////////////////////////////
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+
+  ////////////////////////////////////////////////////
+
+  //
+  const addNewTask = () => {
+    // console.log(newTaskTitle, "newTaskTitle");
+
+    const newObj = { id: nextId++, title: newTaskTitle, done: false };
+    //
+    const updatedList = [...todos, newObj];
+    //
+    setTodos(updatedList);
+  };
+
+  //
+  const inputNewTask = (e) => {
+    setNewTaskTitle(e.target.value);
+  };
+
+  //////////////////////////////////////////////////////
+
   //
   const inputHandler = (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     //this to get input field value
     setinputValue(e.target.value);
 
@@ -69,6 +93,8 @@ const Home = () => {
 
   return (
     <>
+      <AddTask inputNewTask={inputNewTask} addNewTask={addNewTask} />
+      {/*  */}
       <TaskList
         todos={todos}
         inputHandler={inputHandler}
