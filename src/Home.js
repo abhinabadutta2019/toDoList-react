@@ -22,8 +22,21 @@ const Home = () => {
     // console.log(todos, "todos");
   };
   //
+  const onCheckMark = (todoId) => {
+    // console.log("HI");
 
-  const buttonSubmit = (e, todoId) => {
+    const mapValue = todos.map((oneItem) => {
+      if (oneItem.id == todoId) {
+        return { ...oneItem, done: !oneItem.done };
+      } else {
+        return oneItem;
+      }
+    });
+    setTodos(mapValue);
+  };
+  //
+
+  const buttonSubmit = (todoId) => {
     // console.log("Hi");
     //
     //
@@ -47,6 +60,7 @@ const Home = () => {
         todos={todos}
         inputHandler={inputHandler}
         buttonSubmit={buttonSubmit}
+        onCheckMark={onCheckMark}
       />
     </>
   );
