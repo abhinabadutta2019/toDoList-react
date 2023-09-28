@@ -9,7 +9,7 @@ const TaskList = ({
     <>
       <h3>All tasks</h3>
       {todos.map((todo) => (
-        <li key={todo.id}>
+        <li key={todo.id} id={todo.title}>
           <button
             onClick={() => {
               deleteHandle(todo.id);
@@ -37,8 +37,8 @@ const TaskList = ({
             />
 
             <button
-              onClick={() => {
-                buttonSubmit(todo.id);
+              onClick={(e) => {
+                buttonSubmit(todo.id, e);
               }}
             >
               update

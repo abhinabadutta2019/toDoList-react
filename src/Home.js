@@ -73,15 +73,24 @@ const Home = () => {
   };
   //
 
-  const buttonSubmit = (todoId) => {
+  const buttonSubmit = (todoId, e) => {
     // console.log("Hi");
     //
+
+    // console.log(e.target.parentElement.parentElement.id, "e.target");
+
+    //
+    const parentLiId = e.target.parentElement.parentElement.id;
+
+    console.log(parentLiId, "parentLiId");
     //
     const mapValue = todos.map((oneItem) => {
       // console.log(oneItem);
       if (oneItem.id == todoId) {
+        // console.log(parentLiId, "parentLiId");
         // console.log(oneItem.id, "oneItem.id");
         // console.log(todoId, "todoId");
+        //
         return { ...oneItem, title: inputValue };
       } else {
         return oneItem;
