@@ -18,7 +18,9 @@ const TaskList = ({
             delete
           </button>
           <br />
-          {todo.id}---- {todo.title}--{todo.done.toString()}
+          {todo.id}---- {todo.title}--
+          {/* {todo.done.toString()} */}
+          {<span>{todo.done ? "✅" : "❌"}</span>}
           {/* true false button */}
           <button
             onClick={() => {
