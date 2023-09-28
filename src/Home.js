@@ -18,16 +18,20 @@ const Home = () => {
     // console.log(e.target.value);
     //this to get input field value
     setinputValue(e.target.value);
+
+    // console.log(todos, "todos");
   };
   //
 
-  const buttonSubmit = (e) => {
+  const buttonSubmit = (e, todoId) => {
     // console.log("Hi");
-    const mapValue = todos.map((oneItem, todoId) => {
+    //
+    //
+    const mapValue = todos.map((oneItem) => {
       // console.log(oneItem);
       if (oneItem.id == todoId) {
-        console.log(oneItem.id, "oneItem.id");
-        console.log(todoId, "todoId");
+        // console.log(oneItem.id, "oneItem.id");
+        // console.log(todoId, "todoId");
         return { ...oneItem, title: inputValue };
       } else {
         return oneItem;
