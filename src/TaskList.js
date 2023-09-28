@@ -3,13 +3,12 @@ import { useState } from "react";
 const TaskList = ({
   todos,
   // inputHandler,
-  // buttonSubmit,
+  buttonSubmit,
   onCheckMark,
   deleteHandle,
 }) => {
   //
   const [inputValue, setinputValue] = useState("");
-  //
   //
   const inputHandler = (e) => {
     console.log(e.target.value);
@@ -18,25 +17,6 @@ const TaskList = ({
 
     // console.log(todos, "todos");
   };
-
-  const buttonSubmit = (todoId) => {
-    // console.log("Hi");
-    //
-    //
-    const mapValue = todos.map((oneItem) => {
-      // console.log(oneItem);
-      if (oneItem.id == todoId) {
-        // console.log(oneItem.id, "oneItem.id");
-        // console.log(todoId, "todoId");
-        return { ...oneItem, title: inputValue };
-      } else {
-        return oneItem;
-      }
-    });
-
-    setTodos(mapValue);
-  };
-
   //
   return (
     <>

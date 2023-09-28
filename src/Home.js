@@ -38,6 +38,15 @@ const Home = () => {
   //////////////////////////////////////////////////////
 
   //
+  // const inputHandler = (e) => {
+  //   console.log(e.target.value);
+  //   //this to get input field value
+  //   setinputValue(e.target.value);
+
+  //   // console.log(todos, "todos");
+  // };
+
+  //
   const deleteHandle = (todoId) => {
     // console.log("Hi");
 
@@ -64,16 +73,34 @@ const Home = () => {
   };
   //
 
+  const buttonSubmit = (todoId) => {
+    // console.log("Hi");
+    //
+    //
+    const mapValue = todos.map((oneItem) => {
+      // console.log(oneItem);
+      if (oneItem.id == todoId) {
+        // console.log(oneItem.id, "oneItem.id");
+        // console.log(todoId, "todoId");
+        return { ...oneItem, title: inputValue };
+      } else {
+        return oneItem;
+      }
+    });
+
+    setTodos(mapValue);
+  };
+
   return (
     <>
       <AddTask inputNewTask={inputNewTask} addNewTask={addNewTask} />
       {/*  */}
       <TaskList
         todos={todos}
+        // inputHandler={inputHandler}
+        buttonSubmit={buttonSubmit}
         onCheckMark={onCheckMark}
         deleteHandle={deleteHandle}
-        // inputHandler={inputHandler}
-        // buttonSubmit={buttonSubmit}
       />
     </>
   );
