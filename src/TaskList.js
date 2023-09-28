@@ -1,15 +1,48 @@
+import { useState } from "react";
+
 const TaskList = ({
   todos,
-  inputHandler,
-  buttonSubmit,
+  // inputHandler,
+  // buttonSubmit,
   onCheckMark,
   deleteHandle,
 }) => {
+  //
+  const [inputValue, setinputValue] = useState("");
+  //
+  //
+  const inputHandler = (e) => {
+    console.log(e.target.value);
+    //this to get input field value
+    setinputValue(e.target.value);
+
+    // console.log(todos, "todos");
+  };
+
+  const buttonSubmit = (todoId) => {
+    // console.log("Hi");
+    //
+    //
+    const mapValue = todos.map((oneItem) => {
+      // console.log(oneItem);
+      if (oneItem.id == todoId) {
+        // console.log(oneItem.id, "oneItem.id");
+        // console.log(todoId, "todoId");
+        return { ...oneItem, title: inputValue };
+      } else {
+        return oneItem;
+      }
+    });
+
+    setTodos(mapValue);
+  };
+
+  //
   return (
     <>
       <h3>All tasks</h3>
       {todos.map((todo) => (
-        <li key={todo.id} id={todo.title}>
+        <li key={todo.id}>
           <button
             onClick={() => {
               deleteHandle(todo.id);
@@ -37,8 +70,8 @@ const TaskList = ({
             />
 
             <button
-              onClick={(e) => {
-                buttonSubmit(todo.id, e);
+              onClick={() => {
+                buttonSubmit(todo.id);
               }}
             >
               update
