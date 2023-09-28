@@ -21,6 +21,19 @@ const Home = () => {
 
     // console.log(todos, "todos");
   };
+
+  //
+  const deleteHandle = (todoId) => {
+    // console.log("Hi");
+
+    const filterValue = todos.filter((oneItem) => {
+      if (oneItem.id != todoId) {
+        return oneItem;
+      }
+    });
+
+    setTodos(filterValue);
+  };
   //
   const onCheckMark = (todoId) => {
     // console.log("HI");
@@ -61,6 +74,7 @@ const Home = () => {
         inputHandler={inputHandler}
         buttonSubmit={buttonSubmit}
         onCheckMark={onCheckMark}
+        deleteHandle={deleteHandle}
       />
     </>
   );
