@@ -1,4 +1,4 @@
-const TaskList = ({ todos }) => {
+const TaskList = ({ todos, inputEvent, buttonEvent }) => {
   return (
     <>
       {todos.map((oneItem) => {
@@ -6,8 +6,12 @@ const TaskList = ({ todos }) => {
           <li key={oneItem.id}>
             {oneItem.title}
 
-            <input />
-            <button>submit</button>
+            <input
+              onChange={(e) => {
+                inputEvent(e, oneItem.id);
+              }}
+            />
+            <button onClick={buttonEvent}>submit</button>
           </li>
         );
       })}
