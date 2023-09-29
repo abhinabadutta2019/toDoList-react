@@ -1,54 +1,18 @@
-const TaskList = ({
-  todos,
-  inputHandler,
-  buttonSubmit,
-  onCheckMark,
-  deleteHandle,
-}) => {
+const TaskList = ({ todos }) => {
   return (
     <>
-      <h3>All tasks</h3>
-      {todos.map((todo) => (
-        <li key={todo.id}>
-          <button
-            onClick={() => {
-              deleteHandle(todo.id);
-            }}
-          >
-            delete
-          </button>
-          <br />
-          {todo.id}---- {todo.title}--
-          {/* {todo.done.toString()} */}
-          {<span>{todo.done ? "✅" : "❌"}</span>}
-          {/* true false button */}
-          <button
-            onClick={() => {
-              onCheckMark(todo.id);
-            }}
-          >
-            checkMark
-          </button>
-          <p>
-            <input
-              onChange={(e) => {
-                inputHandler(e, todo.id);
-              }}
-            />
+      {todos.map((oneItem) => {
+        return (
+          <li key={oneItem.id}>
+            {oneItem.title}
 
-            <button
-              onClick={() => {
-                buttonSubmit(todo.id);
-              }}
-            >
-              update
-            </button>
-          </p>
-          <hr />
-        </li>
-      ))}
+            <input />
+            <button>submit</button>
+          </li>
+        );
+      })}
     </>
   );
 };
 
-export { TaskList };
+export default TaskList;
