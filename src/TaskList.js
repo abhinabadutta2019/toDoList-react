@@ -11,7 +11,13 @@ const TaskList = ({ todos, inputEvent, buttonEvent }) => {
                 inputEvent(e, oneItem.id);
               }}
             />
-            <button onClick={buttonEvent}>submit</button>
+            <button
+              onClick={() => {
+                buttonEvent(oneItem.id);
+              }}
+            >
+              submit
+            </button>
           </li>
         );
       })}

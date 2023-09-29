@@ -36,13 +36,18 @@ const Home = () => {
     // console.log(buttonClick, "buttonClick");
   };
   //
-  const buttonEvent = () => {
+  const buttonEvent = (todoId) => {
     // setTodos(buttonMap);
 
     //
     const mapValue = todos.map((todo) => {
-      if (todo.title != todo.inputValue && todo.inputValue.length > 0) {
+      if (
+        todo.title != todo.inputValue &&
+        // todo.inputValue.length > 0 &&
+        todoId == todo.id
+      ) {
         return { ...todo, title: todo.inputValue };
+        //  return { ...todo, title: todo.inputValue, inputValue: "" };
       } else {
         return todo;
       }
