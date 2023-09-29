@@ -11,15 +11,16 @@ export default function TaskApp() {
   const [todos, setTodos] = useState(initialTodos);
 
   function handleEditTodo(updatedTodo) {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === updatedTodo.id) {
-          return updatedTodo;
-        } else {
-          return todo;
-        }
-      })
-    );
+    //
+    const mapValue = todos.map((todo) => {
+      if (todo.id === updatedTodo.id) {
+        return updatedTodo;
+      } else {
+        return todo;
+      }
+    });
+    //
+    setTodos(mapValue);
   }
 
   return (
