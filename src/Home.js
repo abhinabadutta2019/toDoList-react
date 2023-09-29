@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TaskList from "./TaskList";
 
 const initialTodos = [
@@ -7,11 +7,12 @@ const initialTodos = [
   { id: 2, title: "Brew tea" },
 ];
 
-export default function TaskApp() {
+const Home = () => {
+  //
   const [todos, setTodos] = useState(initialTodos);
 
-  function handleEditTodo(updatedTodo) {
-    //
+  const handleEditTodo = (updatedTodo) => {
+    // updatedTodo parameter-- hole-- updated value , jeta component theke asbe
     const mapValue = todos.map((todo) => {
       if (todo.id === updatedTodo.id) {
         return updatedTodo;
@@ -21,12 +22,14 @@ export default function TaskApp() {
     });
     //
     setTodos(mapValue);
-  }
-
+  };
+  //
   return (
     <div>
       <h1>Task List</h1>
       <TaskList todos={todos} onEditTodo={handleEditTodo} />
     </div>
   );
-}
+};
+
+export default Home;

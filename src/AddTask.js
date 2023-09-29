@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function Task({ todo, onEditTodo }) {
+const Task = ({ todo, onEditTodo }) => {
+  //
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(todo.title);
 
+  //edit button func
   const handleEditClick = () => {
     setIsEditing(true);
   };
-
+  // save button func
   const handleSaveClick = () => {
     onEditTodo({
       ...todo,
@@ -15,16 +17,19 @@ export default function Task({ todo, onEditTodo }) {
     });
     setIsEditing(false);
   };
-
+  // getting the input field value
   const handleInputChange = (e) => {
     setEditedTitle(e.target.value);
   };
-
+  // initializing content
   let content;
+
+  //
   if (isEditing) {
+    // updating content
     content = (
       <div>
-        <input type="text" value={editedTitle} onChange={handleInputChange} />
+        <input value={editedTitle} onChange={handleInputChange} />
         <button onClick={handleSaveClick}>Save</button>
       </div>
     );
@@ -36,6 +41,8 @@ export default function Task({ todo, onEditTodo }) {
       </div>
     );
   }
-
+  //
   return <div>{content}</div>;
-}
+};
+
+export default Task;
