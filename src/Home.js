@@ -1,72 +1,33 @@
 import { useState } from "react";
-import TaskList from "./TaskList";
+// import AddTodo from "./AddTodo.js";
+import TaskList from "./TaskList.js";
 
-const Home = () => {
-  const initialTodos = [
-    { id: 0, title: "Buy milk", done: true, inputValue: "" },
-    { id: 1, title: "Eat tacos", inputValue: "" },
-    { id: 2, title: "Brew tea", inputValue: "" },
-  ];
+// let nextId = 3;
+const initialTodos = [
+  { id: 0, title: "Buy milk", done: true },
+  { id: 1, title: "Eat tacos", done: false },
+  { id: 2, title: "Brew tea", done: false },
+];
 
+export default function TaskApp() {
   const [todos, setTodos] = useState(initialTodos);
-  //
-  // const [buttonMap, setButtonMap] = useState(todos);
-  //
 
-  //
-  const inputEvent = (e, todoId) => {
-    // console.log(e.target.value);
-    // console.log(todoId, "todoId");
+  function handleChangeTodo(nextTodo) {
+    setTodos(
+      todos.map((t) => {
+        if (t.id === nextTodo.id) {
+          return nextTodo;
+        } else {
+          return t;
+        }
+      })
+    );
+  }
 
-    const mapValue = todos.map((todo) => {
-      if (todo.id == todoId) {
-        console.log(todo.id, todoId);
-        return { ...todo, inputValue: e.target.value };
-      } else {
-        return todo;
-      }
-    });
-    // setButtonMap(mapValue);
-
-    setTodos(mapValue);
-
-    console.log(todos, "todos");
-
-    // console.log(mapValue, "mapValue");
-    // console.log(buttonClick, "buttonClick");
-  };
-  //
-  const buttonEvent = (todoId) => {
-    // setTodos(buttonMap);
-
-    //
-    const mapValue = todos.map((todo) => {
-      if (
-        todo.title != todo.inputValue &&
-        // todo.inputValue.length > 0 &&
-        todoId == todo.id
-      ) {
-        return { ...todo, title: todo.inputValue };
-        //  return { ...todo, title: todo.inputValue, inputValue: "" };
-      } else {
-        return todo;
-      }
-    });
-    setTodos(mapValue);
-  };
-  //
-  // const
-
-  //
   return (
     <>
-      <TaskList
-        todos={todos}
-        inputEvent={inputEvent}
-        buttonEvent={buttonEvent}
-      />
+      {/* <AddTodo onAddTodo={handleAddTodo} /> */}
+      <TaskList todos={todos} onChangeTodo={handleChangeTodo} />
     </>
   );
-};
-
-export default Home;
+}

@@ -1,28 +1,58 @@
-const TaskList = ({ todos, inputEvent, buttonEvent }) => {
+import { useState } from "react";
+
+export default function TaskList({ todos, onChangeTodo }) {
   return (
-    <>
-      {todos.map((oneItem) => {
-        return (
-          <li key={oneItem.id}>
-            {oneItem.title}
+    <ul>
+      {todos.map((todo) => (
+        <li key={todo.id}>
+          <Task todo={todo} onChange={onChangeTodo} />
 
-            <input
-              onChange={(e) => {
-                inputEvent(e, oneItem.id);
-              }}
-            />
-            <button
-              onClick={() => {
-                buttonEvent(oneItem.id);
-              }}
-            >
-              submit
-            </button>
-          </li>
-        );
-      })}
-    </>
+          {/* {todo.title} */}
+        </li>
+      ))}
+    </ul>
   );
-};
+}
 
-export default TaskList;
+function Task({ todo, onChange }) {
+  const [isEditing, setIsEditing] = useState(false);
+  let todoContent;
+  if (isEditing) {
+    todoContent = (
+      <>
+        <input
+          value={todo.title}
+          onChange={(e) => {
+            onChange({
+              ...todo,
+              title: e.target.value,
+            });
+          }}
+        />
+        <button onClick={() => setIsEditing(false)}>Save</button>
+      </>
+    );
+  } else {
+    todoContent = (
+      <>
+        {todo.title}
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+      </>
+    );
+  }
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={todo.done}
+        onChange={(e) => {
+          onChange({
+            ...todo,
+            done: e.target.checked,
+          });
+        }}
+      />
+      {todoContent}
+    </label>
+  );
+}
