@@ -80,6 +80,7 @@ const Task = ({ todo, updateTitle }) => {
         <input
           type="checkbox"
           checked={todo.done}
+          //react automatically pathiye dicche bole-- e paameter na pathaleo -- hocche
           // onChange={(e) => {
           //   checkBoxHandler(e);
           // }}
