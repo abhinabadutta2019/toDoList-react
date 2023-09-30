@@ -43,7 +43,9 @@ const Task = ({ todo, updateTitle }) => {
     //
     setIsEditing(false);
   };
+  //
 
+  //
   let content;
 
   if (isEditing) {
@@ -64,7 +66,15 @@ const Task = ({ todo, updateTitle }) => {
   }
 
   //
-  return <>{content}</>;
+  return (
+    <>
+      <label>
+        <input type="checkbox" checked={todo.done} />
+      </label>
+
+      {content}
+    </>
+  );
 };
 
 //
