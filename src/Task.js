@@ -24,6 +24,14 @@ const Task = ({ todo, deleteFunc, onEditTodo }) => {
     setisEditing(false);
   };
   //
+  const checkBoxHandler = () => {
+    // console.log("HI");
+    //
+    const updatedTodo = { ...todo, seen: !todo.seen };
+
+    onEditTodo(updatedTodo);
+  };
+  //
 
   let content;
 
@@ -49,6 +57,7 @@ const Task = ({ todo, deleteFunc, onEditTodo }) => {
   return (
     //
     <>
+      <input type="checkbox" checked={todo.seen} onChange={checkBoxHandler} />
       {content}
       <button
         onClick={() => {
