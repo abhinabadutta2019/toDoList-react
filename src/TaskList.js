@@ -1,12 +1,13 @@
-import Task from "./AddTask";
+import { useState } from "react";
 
-const TaskList = ({ todos, onEditTodo }) => {
+const TaskList = ({ todos, updateTitle }) => {
   return (
     <>
       {todos.map((todo) => {
         return (
           <li key={todo.id}>
-            <Task todo={todo} onEditTodo={onEditTodo} />
+            {/* {todo.title} */}
+            <Task todo={todo} updateTitle={updateTitle} />
           </li>
         );
       })}
@@ -14,4 +15,50 @@ const TaskList = ({ todos, onEditTodo }) => {
   );
 };
 
+//
+
+const Task = ({ todo, updateTitle }) => {
+  //
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedtitle] = useState(todo.title);
+  //
+
+  const editHandler = () => {
+    setIsEditing(true);
+  };
+  //
+  const inputFieldHandler = (e) => {
+    // console.log(e.target.value);
+    setEditedtitle(e.target.value);
+  };
+  //
+  const saveButtonHandler = (e) => {
+    // console.log(e.target.value, "save");
+    setIsEditing(false);
+  };
+
+  let content;
+
+  if (isEditing) {
+    content = (
+      <>
+        <input value={editedTitle} onChange={inputFieldHandler} />
+
+        <button onClick={saveButtonHandler}>save</button>
+      </>
+    );
+  } else {
+    content = (
+      <>
+        {todo.title}
+        <button onClick={editHandler}>edit button</button>
+      </>
+    );
+  }
+
+  //
+  return <>{content}</>;
+};
+
+//
 export default TaskList;

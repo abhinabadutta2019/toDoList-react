@@ -11,11 +11,11 @@ const Home = () => {
   //
   const [todos, setTodos] = useState(initialTodos);
 
-  const handleEditTodo = (updatedTodo) => {
-    // updatedTodo parameter-- hole-- updated value , jeta component theke asbe
+  //
+  const updateTitle = (updatedTodo) => {
     const mapValue = todos.map((todo) => {
       if (todo.id === updatedTodo.id) {
-        return updatedTodo;
+        return (todo.title = updatedTodo.id);
       } else {
         return todo;
       }
@@ -25,10 +25,9 @@ const Home = () => {
   };
   //
   return (
-    <div>
-      <h1>Task List</h1>
-      <TaskList todos={todos} onEditTodo={handleEditTodo} />
-    </div>
+    <>
+      <TaskList todos={todos} updateTitle={updateTitle} />
+    </>
   );
 };
 
