@@ -43,7 +43,15 @@ const Task = ({ todo, updateTitle }) => {
     //
     setIsEditing(false);
   };
-  //
+  //checkbox update
+  const checkBoxHandler = (e) => {
+    updateTitle({
+      ...todo,
+      done: e.target.checked,
+    });
+
+    console.log(todo);
+  };
 
   //
   let content;
@@ -69,7 +77,14 @@ const Task = ({ todo, updateTitle }) => {
   return (
     <>
       <label>
-        <input type="checkbox" checked={todo.done} />
+        <input
+          type="checkbox"
+          checked={todo.done}
+          // onChange={(e) => {
+          //   checkBoxHandler(e);
+          // }}
+          onChange={checkBoxHandler}
+        />
       </label>
 
       {content}
