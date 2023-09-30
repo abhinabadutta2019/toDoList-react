@@ -40,6 +40,18 @@ const Home = () => {
     // console.log(updatedTodo, "updatedTodo");
     setTodos(updatedTodo);
   };
+  //
+  const onEditTodo = (editedTodo) => {
+    const mapValue = todos.map((todo) => {
+      if (todo.id == editedTodo.id) {
+        console.log(editedTodo, "editedTodo");
+        return (todo = editedTodo);
+      } else {
+        return todo;
+      }
+    });
+    setTodos(mapValue);
+  };
 
   //
   return (
@@ -48,7 +60,7 @@ const Home = () => {
       <AddTask formSubmit={formSubmit} formInputHandler={formInputHandler} />
       {/*  */}
       <h3>All tasks</h3>
-      <TaskList todos={todos} deleteFunc={deleteFunc} />
+      <TaskList todos={todos} deleteFunc={deleteFunc} onEditTodo={onEditTodo} />
     </>
   );
 };

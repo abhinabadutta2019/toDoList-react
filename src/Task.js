@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-const Task = ({ todo, deleteFunc }) => {
+const Task = ({ todo, deleteFunc, onEditTodo }) => {
   const [isEditing, setisEditing] = useState(false);
-  const [updateInputValue, setUpdateInputValue] = useState("");
+  const [updateInputValue, setUpdateInputValue] = useState(todo.title);
   //
 
   const editHandler = () => {
@@ -14,7 +14,14 @@ const Task = ({ todo, deleteFunc }) => {
   };
   //
   const submitUpdate = () => {
-    console.log(updateInputValue);
+    // console.log(updateInputValue);
+
+    const updatedTodo = { ...todo, title: updateInputValue };
+
+    // console.log(updatedTodo, "updatedTodo");
+
+    onEditTodo(updatedTodo);
+    setisEditing(false);
   };
   //
 
@@ -25,7 +32,7 @@ const Task = ({ todo, deleteFunc }) => {
 
     content = (
       <>
-        <input onChange={updateInput} />
+        <input value={updateInputValue} onChange={updateInput} />
         <button onClick={submitUpdate}>save update</button>
       </>
     );
