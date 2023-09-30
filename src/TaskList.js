@@ -1,4 +1,4 @@
-import Task from "./AddTask";
+import Task from "./Task";
 
 const TaskList = ({ todos, deleteFunc }) => {
   return (
