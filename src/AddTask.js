@@ -1,6 +1,8 @@
 import { useState } from "react";
 
+//for id
 let nextId = 3;
+//
 const AddTask = ({ todos, addNewTaskHandler }) => {
   //
   const [formInput, setFormInput] = useState("");
