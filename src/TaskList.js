@@ -1,12 +1,12 @@
 import Task from "./AddTask";
 
-const TaskList = ({ todos }) => {
+const TaskList = ({ todos, deleteFunc }) => {
   return (
     <>
       {todos.map((todo) => {
         return (
           <li key={todo.id}>
-            <Task todo={todo} />
+            <Task todo={todo} deleteFunc={deleteFunc} />
           </li>
         );
       })}

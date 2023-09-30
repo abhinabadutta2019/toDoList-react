@@ -11,9 +11,18 @@ const Home = () => {
   //
   const [todos, setTodos] = useState(initialTodos);
   //
+  const deleteFunc = (sendTodo) => {
+    const filterValue = todos.filter((todo) => {
+      if (todo.id != sendTodo.id) {
+        return todo;
+      }
+    });
+    setTodos(filterValue);
+  };
+  //
   return (
     <>
-      <TaskList todos={todos} />
+      <TaskList todos={todos} deleteFunc={deleteFunc} />
     </>
   );
 };
