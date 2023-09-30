@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TaskList from "./TaskList";
+import AddTask from "./AddTask";
 
-let nextId = 3;
 const initialTodos = [
   { id: 0, title: "Buy milk", seen: true },
   { id: 1, title: "Eat tacos", seen: false },
@@ -12,7 +12,7 @@ const Home = () => {
   //
   const [todos, setTodos] = useState(initialTodos);
   //
-  const [formInput, setFormInput] = useState("");
+
   //
   const deleteFunc = (sendTodo) => {
     const filterValue = todos.filter((todo) => {
@@ -22,24 +22,7 @@ const Home = () => {
     });
     setTodos(filterValue);
   };
-  // for new task
-  const formInputHandler = (e) => {
-    // console.log(e.target.value);
-    setFormInput(e.target.value);
-  };
-  // for new task
-  const formSubmit = (e) => {
-    // to stop reload
-    e.preventDefault();
-    // console.log(formInput);
-    const newObj = { id: nextId++, title: formInput, seen: false };
 
-    // console.log(newObj, "newObj");
-
-    const updatedTodo = [...todos, newObj];
-    // console.log(updatedTodo, "updatedTodo");
-    setTodos(updatedTodo);
-  };
   //
   const onEditTodo = (editedTodo) => {
     const mapValue = todos.map((todo) => {
@@ -53,11 +36,18 @@ const Home = () => {
     setTodos(mapValue);
   };
 
+  // add task
+  const addNewTaskHandler = (updatedTodo) => {
+    setTodos(updatedTodo);
+  };
+
+  //
+
   //
   return (
     <>
       <h3>Add task</h3>
-      <AddTask formSubmit={formSubmit} formInputHandler={formInputHandler} />
+      <AddTask todos={todos} addNewTaskHandler={addNewTaskHandler} />
       {/*  */}
       <h3>All tasks</h3>
       <TaskList todos={todos} deleteFunc={deleteFunc} onEditTodo={onEditTodo} />
@@ -66,20 +56,5 @@ const Home = () => {
 };
 
 ///////////////////////////////
-
-const AddTask = ({ formInputHandler, formSubmit }) => {
-  // console.log(todos, "todos");
-  //
-
-  //
-  return (
-    <>
-      <input onChange={formInputHandler} />
-
-      <button onClick={formSubmit}>submit</button>
-    </>
-  );
-};
-//
 
 export default Home;
