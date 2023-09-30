@@ -29,11 +29,18 @@ const Task = ({ todo, updateTitle }) => {
   //
   const inputFieldHandler = (e) => {
     // console.log(e.target.value);
+
+    console.log(todo);
+    //
     setEditedtitle(e.target.value);
   };
   //
-  const saveButtonHandler = (e) => {
-    // console.log(e.target.value, "save");
+  const saveButtonHandler = () => {
+    const updatedTodoObj = { ...todo, title: editedTitle };
+    updateTitle(updatedTodoObj);
+
+    console.log(todo);
+    //
     setIsEditing(false);
   };
 

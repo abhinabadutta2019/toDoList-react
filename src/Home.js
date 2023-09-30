@@ -15,7 +15,9 @@ const Home = () => {
   const updateTitle = (updatedTodo) => {
     const mapValue = todos.map((todo) => {
       if (todo.id === updatedTodo.id) {
-        return (todo.title = updatedTodo.id);
+        //etar jonno error aschilo
+        // return (todo.title = updatedTodo.title);
+        return updatedTodo;
       } else {
         return todo;
       }
