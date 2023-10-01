@@ -1,60 +1,71 @@
 import { useState } from "react";
-import TaskList from "./TaskList";
-import AddTask from "./AddTask";
-
-const initialTodos = [
-  { id: 0, title: "Buy milk", seen: true },
-  { id: 1, title: "Eat tacos", seen: false },
-  { id: 2, title: "Brew tea", seen: true },
-];
 
 const Home = () => {
   //
-  const [todos, setTodos] = useState(initialTodos);
+  const [answer, setAnswer] = useState("");
+  const [error, setError] = useState(null);
+  const [status, setStatus] = useState("typing");
   //
+  if (status === "success") {
+    return <h1>That's right!</h1>;
+  }
 
   //
-  const deleteFunc = (sendTodo) => {
-    const filterValue = todos.filter((todo) => {
-      if (todo.id != sendTodo.id) {
-        return todo;
-      }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("submitting");
+    //
+    try {
+      await submitForm(answer);
+      setStatus("success");
+    } catch (err) {
+      setStatus("typing");
+      setError(err);
+    }
+  }
+  //
+  function handleTextareaChange(e) {
+    setAnswer(e.target.value);
+  }
+  //
+  function submitForm(answer) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let shouldError = answer.toLowerCase() !== "lima";
+
+        if (shouldError) {
+          reject(new Error("Good guess but a wrong answer. Try again!"));
+        } else {
+          resolve();
+        }
+      }, 1500);
     });
-    setTodos(filterValue);
-  };
-
-  //
-  const onEditTodo = (editedTodo) => {
-    const mapValue = todos.map((todo) => {
-      if (todo.id == editedTodo.id) {
-        console.log(editedTodo, "editedTodo");
-        return (todo = editedTodo);
-      } else {
-        return todo;
-      }
-    });
-    setTodos(mapValue);
-  };
-
-  // add task
-  const addNewTaskHandler = (updatedTodo) => {
-    setTodos(updatedTodo);
-  };
-
-  //
-
+  }
   //
   return (
     <>
-      <h3>Add task</h3>
-      <AddTask todos={todos} addNewTaskHandler={addNewTaskHandler} />
-      {/*  */}
-      <h3>All tasks</h3>
-      <TaskList todos={todos} deleteFunc={deleteFunc} onEditTodo={onEditTodo} />
+      <p>
+        In which city is there a billboard that turns air into drinkable water?
+      </p>
+
+      <form onSubmit={handleSubmit}>
+        {/*  */}
+        <textarea
+          value={answer}
+          onChange={handleTextareaChange}
+          // what is this ?
+          disabled={status === "submitting"}
+        ></textarea>
+
+        <br />
+        <button disabled={answer.length === 0 || status === "submitting"}>
+          Submit
+        </button>
+        {/*  */}
+        {error !== null && <p className="Error">{error.message}</p>}
+      </form>
     </>
   );
 };
-
-///////////////////////////////
 
 export default Home;
