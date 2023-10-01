@@ -28,18 +28,12 @@ const Home = () => {
     setAnswer(e.target.value);
   }
   //
-  function submitForm(answer) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        let shouldError = answer.toLowerCase() !== "lima";
+  async function submitForm(answer) {
+    await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate a delay
 
-        if (shouldError) {
-          reject(new Error("Good guess but a wrong answer. Try again!"));
-        } else {
-          resolve();
-        }
-      }, 1500);
-    });
+    if (answer.toLowerCase() !== "lima") {
+      throw new Error("Good guess but a wrong answer. Try again!");
+    }
   }
   //
   return (
