@@ -1,67 +1,91 @@
+//question ---
+// This form switches between two modes: in the editing mode, you see the inputs, and in the viewing mode, you only see the result. The button label changes between “Edit” and “Save” depending on the mode you’re in. When you change the inputs, the welcome message at the bottom updates in real time.
 import { useState } from "react";
 
-const Home = () => {
+export default function EditProfile() {
   //
 
-  const [answer, setAnswer] = useState("");
-  const [message, setMessage] = useState(null);
-  const [status, setStatus] = useState("typing");
+  const [firstName, setFirstName] = useState("f");
+  const [lastname, setLastName] = useState("l");
 
   //
-  const inputHandler = (e) => {
-    setAnswer(e.target.value);
+  const [editStatus, setEditStatus] = useState(true);
+  //
+  const firstnameHandler = (e) => {
+    setFirstName(e.target.value);
   };
   //
-  async function buttonHandler(e) {
-    //
-    setStatus("submitting");
-    //
-    try {
-      await submitForm(answer);
-      setMessage("Correct!");
-    } catch (err) {
-      // console.log(err);
-      setMessage(err.message);
-      setStatus("typing");
-    }
-    //
+  const lastnameHandler = (e) => {
+    setLastName(e.target.value);
+  };
+  //
+  const saveButtonHandler = (e) => {
+    e.preventDefault();
+    setEditStatus(false);
+  };
+  //
+  const editButtonHandler = (e) => {
+    e.preventDefault();
+    setEditStatus(true);
+  };
+  //
+  let content;
+  //
+
+  if (editStatus) {
+    content = (
+      <>
+        <form>
+          <label>
+            First name:
+            <input value={firstName} onChange={firstnameHandler} />
+          </label>
+          <br />
+          <label>
+            Last name:
+            <input value={lastname} onChange={lastnameHandler} />
+          </label>
+          <br />
+          <button onClick={saveButtonHandler} type="submit">
+            Save Profile
+          </button>
+          <p>
+            <i>
+              Hello, {firstName} {lastname}!
+            </i>
+          </p>
+        </form>
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <form>
+          <label>
+            First name:
+            {/* <input onChange={firstnameHandler} /> */}
+            {firstName}
+          </label>
+          <br />
+          <label>
+            Last name:
+            {/* <input onChange={lastnameHandler} /> */}
+            {lastname}
+          </label>
+          <br />
+          <button onClick={editButtonHandler} type="submit">
+            Edit Profile
+          </button>
+          <p>
+            <i>
+              Hello, {firstName} {lastname}!
+            </i>
+          </p>
+        </form>
+      </>
+    );
   }
 
   //
-  return (
-    <>
-      <p>
-        In which city is there a billboard that turns air into drinkable water?
-      </p>
-
-      <textarea onChange={inputHandler}></textarea>
-
-      <button
-        onClick={buttonHandler}
-        disabled={answer.length < 1 || status == "submitting"}
-      >
-        submit
-      </button>
-
-      <p>{message}</p>
-    </>
-  );
-};
-
-//
-function submitForm(answer) {
-  // Pretend it's hitting the network.
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      let shouldError = answer.toLowerCase() !== "lima";
-      if (shouldError) {
-        reject(new Error("Good guess but a wrong answer. Try again!"));
-      } else {
-        resolve();
-      }
-    }, 1500);
-  });
+  return <>{content}</>;
 }
-//
-
-export default Home;
