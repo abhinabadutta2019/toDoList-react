@@ -12,11 +12,12 @@ const Home = () => {
   //
   async function handleFormSubmit() {
     //
+    setStatus("submitting");
     try {
       await submitForm(answer);
       setStatus("success");
     } catch (err) {
-      // setStatus("typing");
+      setStatus("typing");
       setError(err);
       // console.log(err);
     }
@@ -40,7 +41,10 @@ const Home = () => {
         </p>
         <textarea onChange={answerHandler}></textarea>
         <br />
-        <button onClick={handleFormSubmit} disabled={answer.length < 1}>
+        <button
+          onClick={handleFormSubmit}
+          disabled={answer.length < 1 || status == "submitting"}
+        >
           submit
         </button>
 
