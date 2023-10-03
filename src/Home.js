@@ -8,56 +8,53 @@ const initialItems = [
 
 const Home = () => {
   const [array, setArray] = useState(initialItems);
-  //   const [position, setPosition] = useState(array[0]);
   const [position, setPosition] = useState(0);
   //
-  //   const buttonHandler = (sentItem) => {
-  //     // console.log(sentItem, "sentItem");
+  let nowShow;
 
-  //     setPosition(array[sentItem.id]);
-  //   };
-  //
-  const buttonHandler = (id) => {
-    setPosition(id); // Corrected: Set the selected position to the id
-  };
-  //////
-  const selectedItem = array.find((item) => item.id === position);
-  //////
+  array.forEach((item) => {
+    if (item.id === position) {
+      //   console.log(item);
+      nowShow = item;
+      //   return item;
+    }
+  });
 
-  console.log(selectedItem);
+  //   console.log(nowShow, "nowShow");
 
-  //
-  const inputHandler = (e, ID) => {
-    // console.log(e.target.value);
-    // console.log(sentItem.title);
-
-    setArray(
-      array.map((item) => {
-        if (item.id === ID) {
-          return { ...item, title: e.target.value };
-        } else {
-          return item;
-        }
-      })
-    );
-
-    // setArray(mapValue);
+  const buttonHandler = (sendItem) => {
+    setPosition(sendItem.id);
   };
   //
+  const inputHandler = (e, sentItem) => {
+    const mapValue = array.map((item) => {
+      if (item.id == sentItem.id) {
+        return { ...item, title: e.target.value };
+      } else {
+        return item;
+      }
+    });
+    //
+    setArray(mapValue);
+  };
+
   return (
     <>
       {array.map((item) => {
         return (
           <li key={item.id}>
+            {/* {item.title} */}
+
             <input
               onChange={(e) => {
-                inputHandler(e, item.id);
+                inputHandler(e, item);
               }}
               value={item.title}
             />
+
             <button
               onClick={() => {
-                buttonHandler(item.id);
+                buttonHandler(item);
               }}
             >
               select
@@ -66,9 +63,7 @@ const Home = () => {
         );
       })}
 
-      <p>
-        now selected <strong>{selectedItem.title}</strong>
-      </p>
+      <p>now showing:{nowShow.title} </p>
     </>
   );
 };
