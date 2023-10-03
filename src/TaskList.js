@@ -1,91 +1,68 @@
-//question ---
-// This form switches between two modes: in the editing mode, you see the inputs, and in the viewing mode, you only see the result. The button label changes between “Edit” and “Save” depending on the mode you’re in. When you change the inputs, the welcome message at the bottom updates in real time.
 import { useState } from "react";
 
-export default function EditProfile() {
-  //
+const initialItems = [
+  { title: "pretzels", id: 0 },
+  { title: "crispy seaweed", id: 1 },
+  { title: "granola bar", id: 2 },
+];
 
-  const [firstName, setFirstName] = useState("f");
-  const [lastname, setLastName] = useState("l");
+const Home = () => {
+  const [array, setArray] = useState(initialItems);
+  //   const [position, setPosition] = useState(array[0]);
+  const [position, setPosition] = useState(0);
+  //
+  const buttonHandler = (sentItem) => {
+    console.log(sentItem, "sentItem");
 
-  //
-  const [editStatus, setEditStatus] = useState(true);
-  //
-  const firstnameHandler = (e) => {
-    setFirstName(e.target.value);
+    setPosition(array[sentItem.id]);
   };
-  //
-  const lastnameHandler = (e) => {
-    setLastName(e.target.value);
-  };
-  //
-  const saveButtonHandler = (e) => {
-    e.preventDefault();
-    setEditStatus(false);
-  };
-  //
-  const editButtonHandler = (e) => {
-    e.preventDefault();
-    setEditStatus(true);
-  };
-  //
-  let content;
-  //
-
-  if (editStatus) {
-    content = (
-      <>
-        <form>
-          <label>
-            First name:
-            <input value={firstName} onChange={firstnameHandler} />
-          </label>
-          <br />
-          <label>
-            Last name:
-            <input value={lastname} onChange={lastnameHandler} />
-          </label>
-          <br />
-          <button onClick={saveButtonHandler} type="submit">
-            Save Profile
-          </button>
-          <p>
-            <i>
-              Hello, {firstName} {lastname}!
-            </i>
-          </p>
-        </form>
-      </>
-    );
-  } else {
-    content = (
-      <>
-        <form>
-          <label>
-            First name:
-            {/* <input onChange={firstnameHandler} /> */}
-            {firstName}
-          </label>
-          <br />
-          <label>
-            Last name:
-            {/* <input onChange={lastnameHandler} /> */}
-            {lastname}
-          </label>
-          <br />
-          <button onClick={editButtonHandler} type="submit">
-            Edit Profile
-          </button>
-          <p>
-            <i>
-              Hello, {firstName} {lastname}!
-            </i>
-          </p>
-        </form>
-      </>
-    );
-  }
+  //////
+  const selectedItem = array.find((item) => item.id === position);
+  //////
 
   //
-  return <>{content}</>;
-}
+  const inputHandler = (e, sentItem) => {
+    // console.log(e.target.value);
+    // console.log(sentItem.title);
+
+    const mapValue = array.map((item) => {
+      if (item.id === sentItem.id) {
+        return { ...item, title: e.target.value };
+      } else {
+        return item;
+      }
+    });
+
+    setArray(mapValue);
+  };
+  //
+  return (
+    <>
+      {array.map((item) => {
+        return (
+          <li key={item.id}>
+            <input
+              onChange={(e) => {
+                inputHandler(e, item);
+              }}
+              value={item.title}
+            />
+            <button
+              onClick={() => {
+                buttonHandler(item);
+              }}
+            >
+              select
+            </button>
+          </li>
+        );
+      })}
+
+      <p>
+        now selected <strong>{selectedItem.title}</strong>
+      </p>
+    </>
+  );
+};
+
+export default Home;

@@ -1,54 +1,74 @@
 import { useState } from "react";
 
+const initialItems = [
+  { title: "pretzels", id: 0 },
+  { title: "crispy seaweed", id: 1 },
+  { title: "granola bar", id: 2 },
+];
+
 const Home = () => {
+  const [array, setArray] = useState(initialItems);
+  //   const [position, setPosition] = useState(array[0]);
+  const [position, setPosition] = useState(0);
   //
-  const [firstName, setFirstName] = useState("firstName");
-  const [lastName, setLastName] = useState("lastName");
+  //   const buttonHandler = (sentItem) => {
+  //     // console.log(sentItem, "sentItem");
+
+  //     setPosition(array[sentItem.id]);
+  //   };
   //
-  const [isEditing, setisEditing] = useState(true);
-  //
-  const editButtonHandler = (e) => {
-    e.preventDefault();
-    setisEditing(false);
+  const buttonHandler = (id) => {
+    setPosition(id); // Corrected: Set the selected position to the id
   };
+  //////
+  const selectedItem = array.find((item) => item.id === position);
+  //////
+
+  console.log(selectedItem);
+
   //
-  const saveButtonHandler = (e) => {
-    e.preventDefault();
-    setisEditing(true);
-  };
-  //
-  const firstNameHandler = (e) => {
-    setFirstName(e.target.value);
-  };
-  //
-  const lastNameHandler = (e) => {
-    setLastName(e.target.value);
+  const inputHandler = (e, ID) => {
+    // console.log(e.target.value);
+    // console.log(sentItem.title);
+
+    setArray(
+      array.map((item) => {
+        if (item.id === ID) {
+          return { ...item, title: e.target.value };
+        } else {
+          return item;
+        }
+      })
+    );
+
+    // setArray(mapValue);
   };
   //
   return (
     <>
-      <label>First name: </label>
-      {isEditing ? (
-        <span>{firstName}</span>
-      ) : (
-        <input onChange={firstNameHandler} value={firstName} />
-      )}
+      {array.map((item) => {
+        return (
+          <li key={item.id}>
+            <input
+              onChange={(e) => {
+                inputHandler(e, item.id);
+              }}
+              value={item.title}
+            />
+            <button
+              onClick={() => {
+                buttonHandler(item.id);
+              }}
+            >
+              select
+            </button>
+          </li>
+        );
+      })}
 
-      <br />
-      <label>Last name: </label>
-
-      {isEditing ? (
-        <span>{lastName}</span>
-      ) : (
-        <input onChange={lastNameHandler} value={lastName} />
-      )}
-
-      <br />
-      {isEditing ? (
-        <button onClick={editButtonHandler}>Edit</button>
-      ) : (
-        <button onClick={saveButtonHandler}>save</button>
-      )}
+      <p>
+        now selected <strong>{selectedItem.title}</strong>
+      </p>
     </>
   );
 };
