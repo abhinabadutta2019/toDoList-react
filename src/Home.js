@@ -1,46 +1,40 @@
 import { useState } from "react";
-import { letters } from "./TaskList";
-import Letter from "./Task";
 
 const Home = () => {
-  const [selectedIdArr, setSelectedIdArr] = useState([]);
+  //
 
-  const selectedCount = selectedIdArr.length;
-
-  console.log(selectedIdArr, "selectedIdArr");
-
-  const checkboxHandler = (sentID) => {
-    // if (selectedIdArr.includes()) {
-    // }
-    // console.log(sentID);
-
-    if (selectedIdArr.includes(sentID)) {
-      const filterValue = selectedIdArr.filter((oneID) => oneID != sentID);
-      setSelectedIdArr(filterValue);
-    } else {
-      setSelectedIdArr([...selectedIdArr, sentID]);
-    }
-  };
-
+  //
   return (
     <>
-      {letters.map((letter) => (
-        <Letter
-          key={letter.id}
-          letter={letter}
-          //
-          isSelected={
-            // TODO allow multiple selection
-            selectedIdArr.includes(letter.id)
-          }
-          //
-          checkboxHandler={checkboxHandler}
-        />
-      ))}
-      <br />
-      <b>You selected {selectedCount} letters</b>
+      <Panel>
+        With a population of about 2 million, Almaty is Kazakhstan's largest
+        city. From 1929 to 1997, it was its capital city.
+      </Panel>
+      <Panel>Jaaaaaaa haaaaaaaaa jaaaaaaaa</Panel>
     </>
   );
 };
+
+//
+const Panel = ({ children }) => {
+  const [isActive, setIsActive] = useState(false);
+  return (
+    <li>
+      {isActive ? (
+        <>{children}</>
+      ) : (
+        <button
+          onClick={() => {
+            setIsActive(true);
+          }}
+        >
+          show
+        </button>
+      )}
+    </li>
+  );
+};
+
+//
 
 export default Home;
