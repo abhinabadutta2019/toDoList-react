@@ -1,40 +1,21 @@
 import { useState } from "react";
 
 const Home = () => {
-  //
-
-  //
+  const [myIndex, setMyIndex] = useState(0);
   return (
     <>
-      <Panel>
-        With a population of about 2 million, Almaty is Kazakhstan's largest
-        city. From 1929 to 1997, it was its capital city.
+      <Panel isActive={myIndex === 0} myFunc={() => setMyIndex(0)}>
+        With a population of about 2 million
       </Panel>
-      <Panel>Jaaaaaaa haaaaaaaaa jaaaaaaaa</Panel>
+      <Panel isActive={myIndex === 1} myFunc={() => setMyIndex(1)}>
+        Almaty is Kazakhstan's largest city
+      </Panel>
     </>
   );
 };
 
-//
-const Panel = ({ children }) => {
-  const [isActive, setIsActive] = useState(false);
-  return (
-    <li>
-      {isActive ? (
-        <>{children}</>
-      ) : (
-        <button
-          onClick={() => {
-            setIsActive(true);
-          }}
-        >
-          show
-        </button>
-      )}
-    </li>
-  );
+const Panel = ({ isActive, myFunc, children }) => {
+  return <>{isActive ? children : <button onClick={myFunc}>expand</button>}</>;
 };
-
-//
 
 export default Home;
