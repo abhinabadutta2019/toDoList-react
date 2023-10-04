@@ -1,33 +1,46 @@
 import { useState } from "react";
-import { initialTravelPlan } from "./TaskList.js";
+import { letters } from "./TaskList";
+import Letter from "./Task";
 
-function PlaceTree({ place }) {
-  const childPlaces = place.childPlaces;
-  return (
-    <li>
-      {place.title}
-      {childPlaces.length > 0 && (
-        <ol>
-          {childPlaces.map((place) => (
-            <PlaceTree key={place.id} place={place} />
-          ))}
-        </ol>
-      )}
-    </li>
-  );
-}
+const Home = () => {
+  const [selectedIdArr, setSelectedIdArr] = useState([]);
 
-export default function TravelPlan() {
-  const [plan, setPlan] = useState(initialTravelPlan);
-  const planets = plan.childPlaces;
+  const selectedCount = selectedIdArr.length;
+
+  console.log(selectedIdArr, "selectedIdArr");
+
+  const checkboxHandler = (sentID) => {
+    // if (selectedIdArr.includes()) {
+    // }
+    // console.log(sentID);
+
+    if (selectedIdArr.includes(sentID)) {
+      const filterValue = selectedIdArr.filter((oneID) => oneID != sentID);
+      setSelectedIdArr(filterValue);
+    } else {
+      setSelectedIdArr([...selectedIdArr, sentID]);
+    }
+  };
+
   return (
     <>
-      <h2>Places to visit</h2>
-      <ol>
-        {planets.map((place) => (
-          <PlaceTree key={place.id} place={place} />
-        ))}
-      </ol>
+      {letters.map((letter) => (
+        <Letter
+          key={letter.id}
+          letter={letter}
+          //
+          isSelected={
+            // TODO allow multiple selection
+            selectedIdArr.includes(letter.id)
+          }
+          //
+          checkboxHandler={checkboxHandler}
+        />
+      ))}
+      <br />
+      <b>You selected {selectedCount} letters</b>
     </>
   );
-}
+};
+
+export default Home;

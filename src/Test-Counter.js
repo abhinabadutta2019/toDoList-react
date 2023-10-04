@@ -1,21 +1,47 @@
 import { useState } from "react";
+import { letters } from "./TaskList.js";
+import Letter from "./Task.js";
 
-function Counter() {
-  // Declare a state variable 'count' and a function 'setCount'
-  // 'count' initializes to 0, and 'setCount' is used to update it
-  const [count, setCount] = useState(0);
+export default function MailClient() {
+  const [selectedIds, setSelectedIds] = useState([]);
 
-  // Event handler to increment 'count' when a button is clicked
-  const increment = () => {
-    setCount(count + 1);
-  };
+  // TODO allow multiple selection
+  const selectedCount = selectedIds.length;
+  console.log(selectedCount);
+
+  console.log(selectedIds, "selectedId");
+
+  function handleToggle(toggledId) {
+    // TODO allow multiple selection
+    if (selectedIds.includes(toggledId)) {
+      // Then remove this ID from the array.
+      setSelectedIds(selectedIds.filter((id) => id !== toggledId));
+    } else {
+      // Otherwise, add this ID to the array.
+      setSelectedIds([...selectedIds, toggledId]);
+    }
+  }
 
   return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={increment}>Increment</button>
-    </div>
+    <>
+      <h2>Inbox</h2>
+      <ul>
+        {letters.map((letter) => (
+          <Letter
+            key={letter.id}
+            letter={letter}
+            isSelected={
+              // TODO allow multiple selection
+              selectedIds.includes(letter.id)
+            }
+            onToggle={handleToggle}
+          />
+        ))}
+        <hr />
+        <p>
+          <b>You selected {selectedCount} letters</b>
+        </p>
+      </ul>
+    </>
   );
 }
-
-export default Counter;
