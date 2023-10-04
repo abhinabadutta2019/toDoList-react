@@ -1,21 +1,57 @@
 import { useState } from "react";
+import { foods, filterItems } from "./Task.js";
 
-const Home = () => {
-  const [myIndex, setMyIndex] = useState(0);
+export default function FilterableList() {
+  const [query, setQuery] = useState("");
+  const results = filterItems(foods, query);
+
+  console.log(results, "results");
+
+  function handleChange(e) {
+    setQuery(e.target.value);
+  }
+
   return (
     <>
-      <Panel isActive={myIndex === 0} myFunc={() => setMyIndex(0)}>
-        With a population of about 2 million
-      </Panel>
-      <Panel isActive={myIndex === 1} myFunc={() => setMyIndex(1)}>
-        Almaty is Kazakhstan's largest city
-      </Panel>
+      <SearchBar query={query} onChange={handleChange} />
+      <hr />
+      <List items={results} />
     </>
   );
-};
+}
 
-const Panel = ({ isActive, myFunc, children }) => {
-  return <>{isActive ? children : <button onClick={myFunc}>expand</button>}</>;
-};
+function SearchBar({ query, onChange }) {
+  return (
+    <div>
+      Search: <input value={query} onChange={onChange} />
+    </div>
+  );
+}
+//
+function List({ items }) {
+  return (
+    <ul>
+      {items.map((food) => (
+        <li key={food.id}>
+          <strong>{food.name}</strong>: {food.description}
+        </li>
+      ))}
+    </ul>
+  );
+}
+//
 
-export default Home;
+// function List({ items }) {
+//   return (
+//     <table>
+//       <tbody>
+//         {items.map((food) => (
+//           <tr key={food.id}>
+//             <td>{food.name}</td>
+//             <td>{food.description}</td>
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   );
+// }

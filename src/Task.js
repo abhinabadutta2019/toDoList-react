@@ -1,35 +1,39 @@
-import { useState } from "react";
-
-export default function Accordion() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  return (
-    <>
-      <h2>Almaty, Kazakhstan</h2>
-      <Panel
-        title="About"
-        isActive={activeIndex === 0}
-        onShow={() => setActiveIndex(0)}
-      >
-        With a population of about 2 million, Almaty is Kazakhstan's largest
-        city. From 1929 to 1997, it was its capital city.
-      </Panel>
-      <Panel
-        title="Etymology"
-        isActive={activeIndex === 1}
-        onShow={() => setActiveIndex(1)}
-      >
-        The name comes considered a likely candidate for the ancestor of the
-        modern domestic apple.
-      </Panel>
-    </>
+export function filterItems(items, query) {
+  query = query.toLowerCase();
+  return items.filter((item) =>
+    item.name.split(" ").some((word) => word.toLowerCase().startsWith(query))
   );
 }
 
-function Panel({ title, children, isActive, onShow }) {
-  return (
-    <section className="panel">
-      <h3>{title}</h3>
-      {isActive ? <p>{children}</p> : <button onClick={onShow}>Show</button>}
-    </section>
-  );
-}
+export const foods = [
+  {
+    id: 0,
+    name: "Sushi",
+    description:
+      "Sushi is a traditional Japanese dish of prepared vinegared rice",
+  },
+  {
+    id: 1,
+    name: "Dal",
+    description:
+      "The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added",
+  },
+  {
+    id: 2,
+    name: "Pierogi",
+    description:
+      "Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water",
+  },
+  {
+    id: 3,
+    name: "Shish kebab",
+    description:
+      "Shish kebab is a popular meal of skewered and grilled cubes of meat.",
+  },
+  {
+    id: 4,
+    name: "Dim sum",
+    description:
+      "Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch",
+  },
+];
