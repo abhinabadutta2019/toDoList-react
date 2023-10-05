@@ -6,10 +6,13 @@ const filterItems = (items, query) => {
   query = query.toLowerCase();
 
   //
-  return items.filter((item) =>
+  // return
+
+  const filterValue = items.filter((item) =>
     item.name.split(" ").some((word) => word.toLowerCase().startsWith(query))
   );
   //
+  return filterValue;
 };
 //
 
