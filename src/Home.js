@@ -1,11 +1,20 @@
 import { useState } from "react";
-import { foods, filterItems } from "./Task.js";
+import { foods } from "./Task.js";
 
 export default function FilterableList() {
   const [query, setQuery] = useState("");
   const results = filterItems(foods, query);
 
   console.log(results, "results");
+
+  //
+  function filterItems(items, query) {
+    query = query.toLowerCase();
+    return items.filter((item) =>
+      item.name.split(" ").some((word) => word.toLowerCase().startsWith(query))
+    );
+  }
+  //
 
   function handleChange(e) {
     setQuery(e.target.value);
@@ -40,18 +49,3 @@ function List({ items }) {
   );
 }
 //
-
-// function List({ items }) {
-//   return (
-//     <table>
-//       <tbody>
-//         {items.map((food) => (
-//           <tr key={food.id}>
-//             <td>{food.name}</td>
-//             <td>{food.description}</td>
-//           </tr>
-//         ))}
-//       </tbody>
-//     </table>
-//   );
-// }
