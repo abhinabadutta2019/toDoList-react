@@ -1,8 +1,21 @@
 import { useState } from "react";
 import { foods } from "./Task.js";
 
+//
+const filterItems = (items, query) => {
+  query = query.toLowerCase();
+
+  //
+  return items.filter((item) =>
+    item.name.split(" ").some((word) => word.toLowerCase().startsWith(query))
+  );
+  //
+};
+//
+
 export default function FilterableList() {
   const [query, setQuery] = useState("");
+  const results = filterItems(foods, query);
 
   //
   function handleChange(e) {
@@ -14,7 +27,7 @@ export default function FilterableList() {
   return (
     <>
       <SearchBar query={query} onChange={handleChange} />
-      <List items={foods} />
+      <List items={results} />
     </>
   );
 }
