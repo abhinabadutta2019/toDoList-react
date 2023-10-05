@@ -2,19 +2,35 @@ import { useState } from "react";
 import { foods } from "./Task.js";
 
 //
+// const filterItems = (items, query) => {
+//   query = query.toLowerCase();
+
+//   const filterValue = items.filter((item) =>
+//     item.name.split(" ").some((word) => {
+//       return word.toLowerCase().startsWith(query);
+//     })
+//   );
+//   //
+//   return filterValue;
+// };
+
 const filterItems = (items, query) => {
   query = query.toLowerCase();
 
-  //
-  // return
+  const filteredItems = items.filter((item) => {
+    const words = item.name.toLowerCase().split(" ");
 
-  const filterValue = items.filter((item) =>
-    item.name.split(" ").some((word) => word.toLowerCase().startsWith(query))
-  );
-  //
-  return filterValue;
+    for (const word of words) {
+      if (word.startsWith(query)) {
+        return true;
+      }
+    }
+    return false;
+  });
+
+  return filteredItems;
 };
-//
+/////////////////////////////////////////////////
 
 export default function FilterableList() {
   const [query, setQuery] = useState("");
